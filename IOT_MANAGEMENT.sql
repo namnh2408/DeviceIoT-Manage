@@ -2,91 +2,113 @@
 GO
 USE IOT_MANAGEMENT
 GO
+
+--bảng User dùng để lưu thông tin người dùng
 CREATE TABLE Users
 (
-	Id_Users INT IDENTITY(1,1) NOT NULL,
+	Id_Users INT IDENTITY(1,1),
 	Username NVARCHAR(50) NOT NULL,
 	Email NVARCHAR(100) NOT NULL,
 	Password NVARCHAR(300) NOT NULL,
-	FisrtName NVARCHAR(50) NULL,
-	LastName NVARCHAR(50) NULL,
-	Address NVARCHAR(100) NULL,
-	Gender NVARCHAR(5) NULL,
-	Phone NVARCHAR(15) NULL,
-	Birthday DATE NULL ,
-	RoleID INT NULL,
-	Avatar NVARCHAR(100) NULL,
-	Create_User DATE NULL,--ngày tạo user
-	Block BIT DEFAULT 0, --0: False (không khóa) 1: true (khóa)
-	Status BIT DEFAULT 0, --1. online , 0. offline
+	Address NVARCHAR(100)NOT NULL,
+	Gender NVARCHAR(5) NOT NULL,
+	Phone NVARCHAR(15) NOT NULL,
+	Birthday DATE NOT NULL ,
+	RoleID INT NOT NULL,
+	Avatar NVARCHAR(100),
+	Create_User DATE NOT NULL,--ngày tạo user
 	UNIQUE (Username, Email),
 	PRIMARY KEY (Id_Users)
 )
 
+
 CREATE TABLE Role
 (
-	RoleID INT IDENTITY(1,1) NOT NULL,
-	RoleName NVARCHAR(30) NULL,
-	PRIMARY KEY (RoleID)
+	RoleID INT IDENTITY(1,1)NOT NULL PRIMARY KEY,
+	RoleName NVARCHAR(30) NOT NULL
 )
 
-
-CREATE TABLE Project
+--bảng Address dùng để địa chỉ của người dùng khi mua hàng
+CREATE TABLE Address
 (
-	Id_Project VARCHAR(20) PRIMARY KEY,
-	Id_Users INT REFERENCES dbo.Users(Id_Users),
-	Name_Project VARCHAR(255) NULL,
-	Category_Number INT NULL, --số lượng các category có trong 1 project
-	Create_Project DATE NULL, --ngày tạo project
-	Image_Project NTEXT NULL
+	Id_Address INT IDENTITY(1,1)NOT NULL  PRIMARY KEY,
+	Id_Users INT NOT NULL  REFERENCES dbo.Users(Id_Users),
+	Name NVARCHAR(100) NOT NULL , -- tên người nhận hàng
+	Address NVARCHAR(100)NOT NULL , -- địa chỉ nhận hàng của người dùng
+	Phone NVARCHAR(20)NOT NULL ,
+	Default_Address INT NOT NULL  -- địa chỉ mặt định của người dùng
 )
 
-ALTER TABLE dbo.Users ADD CONSTRAINT Users_Role FOREIGN KEY (RoleID) REFERENCES dbo.Role(RoleID)
-GO
-
-CREATE TABLE Work_On
+CREATE TABLE Shop
 (
-	Id_User INT REFERENCES dbo.Users (Id_Users),
-	Id_Project VARCHAR(20) REFERENCES dbo.Project(Id_Project),
-	Status BIT NULL, -- 1. hoàn thành 0. chưa hoàn thành
-	PRIMARY KEY (Id_User,Id_Project)
+	Id_Shop INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	Address NVARCHAR(100) NOT NULL,
+	Id_Users INT NOT NULL REFERENCES dbo.Users(Id_Users),
+	Name_Shop NVARCHAR(100) NOT NULL,
+	Description NVARCHAR(100) NOT NULL,
+	Pictures NTEXT
 )
 
-CREATE TABLE Categories
+--Category lưu thông tin các loại thiết bị
+CREATE TABLE Category
 (
-	Id_Category VARCHAR(20) PRIMARY KEY,
-	Name_Category NVARCHAR(255) NULL,	
-	Create_Category DATE NULL, -- ngày tạo category vào trong project, có thể trùng với ngày tạo project
-	Num_Product INT NULL, -- số lượng product có trong category
-	Id_Project VARCHAR(20) REFERENCES dbo.Project(Id_Project),
-	Image_Category NTEXT NULL
+	Id_Category INT IDENTITY(1,1) PRIMARY KEY,
+	Name_Category NVARCHAR(1000) NOT NULL 
 )
 
-CREATE TABLE Project_Categories
-(
-	Id INT IDENTITY(1,1) PRIMARY KEY,
-	Id_Project VARCHAR(20) REFERENCES dbo.Project(Id_Project),
-	Id_Categories VARCHAR(20) REFERENCES dbo.Categories(Id_Category)
-)
-
+-- Product lưu thông tin của thiết bị
 CREATE TABLE Product
 (
-	Id_Product VARCHAR(20) PRIMARY KEY,
-	Name_Product NVARCHAR(255) NULL,
-	Create_Product DATE NULL, -- ngày tạo product vào trong category, có thể trùng hoặc không trùng với ngày tạo category
-	Image_Product NTEXT NULL,
-	Id_Category VARCHAR(20) REFERENCES dbo.Categories(Id_Category)
-) 
-GO 
-
-CREATE TABLE Category_Product
-(
-	Id INT IDENTITY(1,1) PRIMARY KEY,
-	Id_Category VARCHAR(20) REFERENCES dbo.Categories(Id_Category),
-	Id_Product VARCHAR(20) REFERENCES dbo.Product(Id_Product),
-	Status BIT NULL --1. hoạt động 0. không hoạt động
+	Id_Product INT IDENTITY(1,1) PRIMARY KEY,
+	Name_Product NVARCHAR(500)NOT NULL ,
+	Price REAL NOT NULL ,
+	Amount INT NOT NULL ,
+	Id_Category INT NOT NULL  REFERENCES dbo.Category(Id_Category),
+	Id_Store INT NOT NULL REFERENCES dbo.Shop(Id_Shop),
+	Pictures NTEXT,
+	Description NVARCHAR(1000) NOT NULL
 )
-GO 
+
+CREATE TABLE Orders
+(
+	Id_Order INT IDENTITY(1,1) PRIMARY KEY,
+	Id_Users INT NOT NULL REFERENCES dbo.Users(Id_Users),
+	Id_Shop INT NOT NULL REFERENCES dbo.Shop(Id_Shop),
+	Delivery FLOAT NOT NULL,
+	Payment NVARCHAR(100) NOT NULL,
+	Create_Orders DATETIME NOT NULL, --ngày tạo đơn
+	Status INT NOT NULL,
+	Description NVARCHAR(1000) NOT NULL,
+	Id_Address INT NOT NULL REFERENCES dbo.Address(Id_Address), -- địa chỉ nhận hàng
+	Total_Order FLOAT NOT NULL
+)
+
+CREATE TABLE Orders_Item
+(
+	Id_Order INT IDENTITY(1,1) REFERENCES dbo.Orders(Id_Order),
+	Id_Product INT NOT NULL REFERENCES dbo.Product(Id_Product),
+	Price FLOAT NOT NULL,
+	Amount INT NOT NULL,
+	Discount FLOAT,
+	Total FLOAT NOT NULL,
+	Status INT NOT NULL
+)
+
+CREATE TABLE Cart
+(
+	Id_Cart INT IDENTITY(1,1) PRIMARY KEY,
+	Id_Users INT NOT NULL REFERENCES dbo.Users(Id_Users)
+)
+
+CREATE TABLE Cart_Item
+(
+	Id_Cart INT NOT NULL REFERENCES dbo.Cart(Id_Cart),
+	Amount  INT NOT NULL,
+	Id_Product INT NOT NULL REFERENCES dbo.Product(Id_Product),
+	PRIMARY KEY (Id_Cart,Id_Product)
+)
+GO
+
 ----------------------------------------------FUNCTION----------------------------------------------
 -- Mã hóa mật khẩu dưới dạng MD5
 --CONVERT cho phép chuyển đổi một biểu thức nào đó sang một kiểu dữ liệu bất kì
