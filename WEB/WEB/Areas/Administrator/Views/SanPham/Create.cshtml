@@ -1,0 +1,113 @@
+﻿@model WEB.Areas.Administrator.Models.SanPham
+
+@{
+    ViewBag.Title = "Tạo sản phẩm";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tạo sản phẩm mới</h2>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="~/Areas/Administrator/css/froala_editor.css">
+<link rel="stylesheet" href="~/Areas/Administrator/css/froala_style.css">
+<link rel="stylesheet" href="~/Areas/Administrator/css/plugins/code_view.css">
+<link rel="stylesheet" href="~/Areas/Administrator/css/plugins/image_manager.css">
+<link rel="stylesheet" href="~/Areas/Administrator/css/plugins/image.css">
+<link rel="stylesheet" href="~/Areas/Administrator/css/plugins/table.css">
+<link rel="stylesheet" href="~/Areas/Administrator/css/plugins/video.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+
+
+
+
+
+
+<div>
+    <i class="fa fa-undo fa-fw"></i>@Html.ActionLink("Quay lại", "Index", "SanPham")
+</div>
+@using (Html.BeginForm("Create", "SanPham", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="text-success">
+            @ViewBag.CreateProError
+        </div>
+        <div class="form-group col-lg-5">
+            <label>Loại sản phẩm</label>
+            @Html.DropDownListFor(model => model.MaLoaiSP, ViewBag.typeListCreate as SelectList, new { @class = "form-control" })
+
+            <label>Thương hiệu</label>
+            @Html.DropDownListFor(model => model.MaThuongHieu, ViewBag.pdcListCreate as SelectList, new { @class = "form-control" })
+
+            <label>Tên sản phẩm</label>
+            @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nhập tên sản phẩm..." } })
+            <div class="text-danger">@Html.ValidationMessageFor(model => model.TenSP)</div>
+
+            <label>Đơn giá</label>
+            @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nhập đơn giá sản phẩm..." } })
+            <div class="text-danger">@Html.ValidationMessageFor(model => model.Gia)</div>
+
+            <label>Số lượng</label>
+            @Html.EditorFor(model => model.SoLuongSP, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nhập số lượng..." } })
+            <div class="text-danger">@Html.ValidationMessageFor(model => model.SoLuongSP)</div>
+
+            <label>Chiết khấu</label>
+            @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nhập chiết khấu (%)..." } })
+            <div class="text-danger">@Html.ValidationMessageFor(model => model.Discount)</div>
+
+            <label>Hình ảnh</label>
+            <input type="file" id="file" name="file" />
+            <div class="text-danger">@ViewBag.HinhAnh</div>
+
+            <label>Mô tả</label>
+            <div>
+                <textarea id="edit" style="margin-top: 30px;" name="ThongSoKyTHuat"></textarea>
+                <div class="text-danger">@Html.ValidationMessageFor(model => model.ThongSoKyTHuat)</div>
+            </div>
+
+            @*
+                @Html.TextAreaFor(model => model.proDescription, new {@class="form-control", @placeholder = "Nhập mô tả sản phẩm..." ,@type="text"})
+                <div class="text-danger">@Html.ValidationMessageFor(model => model.proDescription)</div>
+            *@
+            <br />
+            <input type="submit" value="Tạo mới" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+<script type="text/javascript" src="~/Areas/Administrator/js/froala_editor.min.js"></script>
+<script type="text/javascript" src="~/Areas/Administrator/js/plugins/align.min.js"></script>
+<script type="text/javascript" src="~/Areas/Administrator/js/plugins/code_beautifier.min.js"></script>
+<script type="text/javascript" src="~/Areas/Administrator/js/plugins/code_view.min.js"></script>
+<script type="text/javascript" src="~/Areas/Administrator/js/plugins/draggable.min.js"></script>
+<script type="text/javascript" src="~/Areas/Administrator/js/plugins/image.min.js"></script>
+<script type="text/javascript" src="~/Areas/Administrator/js/plugins/image_manager.min.js"></script>
+<script type="text/javascript" src="~/Areas/Administrator/js/plugins/link.min.js"></script>
+<script type="text/javascript" src="~/Areas/Administrator/js/plugins/lists.min.js"></script>
+<script type="text/javascript" src="~/Areas/Administrator/js/plugins/paragraph_format.min.js"></script>
+<script type="text/javascript" src="~/Areas/Administrator/js/plugins/paragraph_style.min.js"></script>
+<script type="text/javascript" src="~/Areas/Administrator/js/plugins/table.min.js"></script>
+<script type="text/javascript" src="~/Areas/Administrator/js/plugins/video.min.js"></script>
+<script type="text/javascript" src="~/Areas/Administrator/js/plugins/url.min.js"></script>
+<script type="text/javascript" src="~/Areas/Administrator/js/plugins/entities.min.js"></script>
+
+<script>
+    new FroalaEditor('#edit')
+</script>
+
+

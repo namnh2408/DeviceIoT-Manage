@@ -1,0 +1,53 @@
+﻿@model WEB.Areas.Administrator.Models.ThuongHieu
+
+@{
+    ViewBag.Title = "Tạo thương hiệu mới";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tạo thương hiệu mới</h2>
+
+
+<div>
+    <i class="fa fa-undo fa-fw"></i>@Html.ActionLink("Quay lại", "Index", "ThuongHieu")
+</div>
+@using (Html.BeginForm("Create", "ThuongHieu", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="text-success">
+            @ViewBag.CreatePdcError
+        </div>
+        <div class="form-group col-lg-5">
+            <label>Tên thương hiệu</label>
+            @Html.EditorFor(model => model.TenTH, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nhập tên thương hiệu.." } })
+            <div class="text-danger">@Html.ValidationMessageFor(model => model.TenTH)</div>
+
+            <label>Số điện thoại</label>
+            @Html.EditorFor(model => model.DienTHoai, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nhập số điện thoại..." } })
+            <div class="text-danger">@Html.ValidationMessageFor(model => model.DienTHoai)</div>
+
+            <label>Email</label>
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nhập email..." } })
+            <div class="text-danger">@Html.ValidationMessageFor(model => model.Email)</div>
+
+            <label>Địa chỉ</label>
+            @Html.TextAreaFor(model => model.DiaChi, new { @class = "form-control", @placeholder = "Nhập địa chỉ..." })
+            <div class="text-danger">@Html.ValidationMessageFor(model => model.DiaChi)</div>
+
+            <label>Hình ảnh</label>
+            <input type="file" id="file" name="file" />
+            <div class="text-danger">@ViewBag.HinhAnh</div>
+            <br />
+            <input type="submit" value="Tạo mới" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+

@@ -1,0 +1,1099 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EE33E367-CB44-4EA5-8748-ADCD469AFDBF}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WEB</RootNamespace>
+    <AssemblyName>WEB</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44315</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Administrator\AdminDB.cs" />
+    <Compile Include="Areas\Administrator\AdministratorAreaRegistration.cs" />
+    <Compile Include="Areas\Administrator\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\DanhMucController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\HoaDonController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\KhachHangController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\LoaiSPController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\SanPhamController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\ThongKeController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\ThuongHieuController.cs" />
+    <Compile Include="Areas\Administrator\Models\AdminContext.cs" />
+    <Compile Include="Areas\Administrator\Models\ChiTietHD.cs" />
+    <Compile Include="Areas\Administrator\Models\DanhMuc.cs" />
+    <Compile Include="Areas\Administrator\Models\HoaDon.cs" />
+    <Compile Include="Areas\Administrator\Models\KhachHang.cs" />
+    <Compile Include="Areas\Administrator\Models\LoaiSP.cs" />
+    <Compile Include="Areas\Administrator\Models\QuanTri.cs" />
+    <Compile Include="Areas\Administrator\Models\SanPham.cs" />
+    <Compile Include="Areas\Administrator\Models\ThuongHieu.cs" />
+    <Compile Include="Areas\Shopper\Controllers\ErrorsController.cs" />
+    <Compile Include="Areas\Shopper\Controllers\GioHangController.cs" />
+    <Compile Include="Areas\Shopper\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Shopper\Controllers\ThanhToanController.cs" />
+    <Compile Include="Areas\Shopper\Models\CartItem.cs" />
+    <Compile Include="Areas\Shopper\Models\ChiTietHD.cs" />
+    <Compile Include="Areas\Shopper\Models\DanhMuc.cs" />
+    <Compile Include="Areas\Shopper\Models\HoaDon.cs" />
+    <Compile Include="Areas\Shopper\Models\KhachHang.cs" />
+    <Compile Include="Areas\Shopper\Models\LoaiSP.cs" />
+    <Compile Include="Areas\Shopper\Models\QuanTri.cs" />
+    <Compile Include="Areas\Shopper\Models\SanPham.cs" />
+    <Compile Include="Areas\Shopper\Models\ThuongHieu.cs" />
+    <Compile Include="Areas\Shopper\Models\UserContext.cs" />
+    <Compile Include="Areas\Shopper\Controllers\SanPhamController.cs" />
+    <Compile Include="Areas\Shopper\ShopperAreaRegistration.cs" />
+    <Compile Include="Areas\Shopper\UserDB.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ProductDAO.cs" />
+    <Compile Include="Repository\ShopDAO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administrator\Content\css\froala_editor.css" />
+    <Content Include="Areas\Administrator\Content\css\froala_editor.min.css" />
+    <Content Include="Areas\Administrator\Content\css\froala_editor.pkgd.css" />
+    <Content Include="Areas\Administrator\Content\css\froala_editor.pkgd.min.css" />
+    <Content Include="Areas\Administrator\Content\css\froala_style.css" />
+    <Content Include="Areas\Administrator\Content\css\froala_style.min.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins.pkgd.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins.pkgd.min.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\char_counter.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\char_counter.min.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\code_view.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\code_view.min.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\colors.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\colors.min.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\draggable.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\draggable.min.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\emoticons.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\emoticons.min.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\file.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\file.min.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\fullscreen.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\fullscreen.min.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\help.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\help.min.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\image.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\image.min.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\image_manager.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\image_manager.min.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\line_breaker.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\line_breaker.min.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\quick_insert.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\quick_insert.min.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\special_characters.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\special_characters.min.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\table.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\table.min.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\video.css" />
+    <Content Include="Areas\Administrator\Content\css\plugins\video.min.css" />
+    <Content Include="Areas\Administrator\Content\css\themes\dark.css" />
+    <Content Include="Areas\Administrator\Content\css\themes\dark.min.css" />
+    <Content Include="Areas\Administrator\Content\css\themes\gray.css" />
+    <Content Include="Areas\Administrator\Content\css\themes\gray.min.css" />
+    <Content Include="Areas\Administrator\Content\css\themes\royal.css" />
+    <Content Include="Areas\Administrator\Content\css\themes\royal.min.css" />
+    <Content Include="Areas\Administrator\Content\css\third_party\embedly.css" />
+    <Content Include="Areas\Administrator\Content\css\third_party\embedly.min.css" />
+    <Content Include="Areas\Administrator\Content\css\third_party\font_awesome.css" />
+    <Content Include="Areas\Administrator\Content\css\third_party\font_awesome.min.css" />
+    <Content Include="Areas\Administrator\Content\css\third_party\image_tui.css" />
+    <Content Include="Areas\Administrator\Content\css\third_party\image_tui.min.css" />
+    <Content Include="Areas\Administrator\Content\css\third_party\spell_checker.css" />
+    <Content Include="Areas\Administrator\Content\css\third_party\spell_checker.min.css" />
+    <Content Include="Areas\Administrator\Content\data\flot-data.js" />
+    <Content Include="Areas\Administrator\Content\data\morris-data.js" />
+    <Content Include="Areas\Administrator\Content\dist\css\sb-admin-2.css" />
+    <Content Include="Areas\Administrator\Content\dist\css\sb-admin-2.min.css" />
+    <Content Include="Areas\Administrator\Content\dist\js\sb-admin-2.js" />
+    <Content Include="Areas\Administrator\Content\dist\js\sb-admin-2.min.js" />
+    <Content Include="Areas\Administrator\Content\js\froala_editor.min.js" />
+    <Content Include="Areas\Administrator\Content\js\froala_editor.pkgd.min.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\ar.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\bs.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\cs.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\da.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\de.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\el.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\en_ca.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\en_gb.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\es.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\et.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\fa.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\fi.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\fr.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\he.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\hr.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\hu.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\id.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\it.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\ja.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\ko.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\ku.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\me.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\nb.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\nl.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\pl.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\pt_br.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\pt_pt.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\ro.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\ru.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\sk.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\sr.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\sv.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\th.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\tr.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\uk.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\vi.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\zh_cn.js" />
+    <Content Include="Areas\Administrator\Content\js\languages\zh_tw.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins.pkgd.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\align.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\char_counter.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\code_beautifier.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\code_view.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\colors.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\draggable.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\edit_in_popup.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\emoticons.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\entities.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\file.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\font_family.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\font_size.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\forms.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\fullscreen.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\help.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\image.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\image_manager.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\inline_class.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\inline_style.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\line_breaker.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\line_height.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\link.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\lists.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\paragraph_format.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\paragraph_style.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\print.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\quick_insert.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\quote.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\save.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\special_characters.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\table.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\url.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\video.min.js" />
+    <Content Include="Areas\Administrator\Content\js\plugins\word_paste.min.js" />
+    <Content Include="Areas\Administrator\Content\js\sb-admin-2.js" />
+    <Content Include="Areas\Administrator\Content\js\third_party\embedly.min.js" />
+    <Content Include="Areas\Administrator\Content\js\third_party\font_awesome.min.js" />
+    <Content Include="Areas\Administrator\Content\js\third_party\image_tui.min.js" />
+    <Content Include="Areas\Administrator\Content\js\third_party\spell_checker.min.js" />
+    <Content Include="Areas\Administrator\Content\style.css" />
+    <Content Include="Areas\Administrator\Css\froala_editor.css" />
+    <Content Include="Areas\Administrator\Css\froala_editor.min.css" />
+    <Content Include="Areas\Administrator\Css\froala_editor.pkgd.css" />
+    <Content Include="Areas\Administrator\Css\froala_editor.pkgd.min.css" />
+    <Content Include="Areas\Administrator\Css\froala_style.css" />
+    <Content Include="Areas\Administrator\Css\froala_style.min.css" />
+    <Content Include="Areas\Administrator\Css\plugins.pkgd.css" />
+    <Content Include="Areas\Administrator\Css\plugins.pkgd.min.css" />
+    <Content Include="Areas\Administrator\Css\plugins\char_counter.css" />
+    <Content Include="Areas\Administrator\Css\plugins\char_counter.min.css" />
+    <Content Include="Areas\Administrator\Css\plugins\code_view.css" />
+    <Content Include="Areas\Administrator\Css\plugins\code_view.min.css" />
+    <Content Include="Areas\Administrator\Css\plugins\colors.css" />
+    <Content Include="Areas\Administrator\Css\plugins\colors.min.css" />
+    <Content Include="Areas\Administrator\Css\plugins\draggable.css" />
+    <Content Include="Areas\Administrator\Css\plugins\draggable.min.css" />
+    <Content Include="Areas\Administrator\Css\plugins\emoticons.css" />
+    <Content Include="Areas\Administrator\Css\plugins\emoticons.min.css" />
+    <Content Include="Areas\Administrator\Css\plugins\file.css" />
+    <Content Include="Areas\Administrator\Css\plugins\file.min.css" />
+    <Content Include="Areas\Administrator\Css\plugins\fullscreen.css" />
+    <Content Include="Areas\Administrator\Css\plugins\fullscreen.min.css" />
+    <Content Include="Areas\Administrator\Css\plugins\help.css" />
+    <Content Include="Areas\Administrator\Css\plugins\help.min.css" />
+    <Content Include="Areas\Administrator\Css\plugins\image.css" />
+    <Content Include="Areas\Administrator\Css\plugins\image.min.css" />
+    <Content Include="Areas\Administrator\Css\plugins\image_manager.css" />
+    <Content Include="Areas\Administrator\Css\plugins\image_manager.min.css" />
+    <Content Include="Areas\Administrator\Css\plugins\line_breaker.css" />
+    <Content Include="Areas\Administrator\Css\plugins\line_breaker.min.css" />
+    <Content Include="Areas\Administrator\Css\plugins\quick_insert.css" />
+    <Content Include="Areas\Administrator\Css\plugins\quick_insert.min.css" />
+    <Content Include="Areas\Administrator\Css\plugins\special_characters.css" />
+    <Content Include="Areas\Administrator\Css\plugins\special_characters.min.css" />
+    <Content Include="Areas\Administrator\Css\plugins\table.css" />
+    <Content Include="Areas\Administrator\Css\plugins\table.min.css" />
+    <Content Include="Areas\Administrator\Css\plugins\video.css" />
+    <Content Include="Areas\Administrator\Css\plugins\video.min.css" />
+    <Content Include="Areas\Administrator\Css\themes\dark.css" />
+    <Content Include="Areas\Administrator\Css\themes\dark.min.css" />
+    <Content Include="Areas\Administrator\Css\themes\gray.css" />
+    <Content Include="Areas\Administrator\Css\themes\gray.min.css" />
+    <Content Include="Areas\Administrator\Css\themes\royal.css" />
+    <Content Include="Areas\Administrator\Css\themes\royal.min.css" />
+    <Content Include="Areas\Administrator\Css\third_party\embedly.css" />
+    <Content Include="Areas\Administrator\Css\third_party\embedly.min.css" />
+    <Content Include="Areas\Administrator\Css\third_party\font_awesome.css" />
+    <Content Include="Areas\Administrator\Css\third_party\font_awesome.min.css" />
+    <Content Include="Areas\Administrator\Css\third_party\image_tui.css" />
+    <Content Include="Areas\Administrator\Css\third_party\image_tui.min.css" />
+    <Content Include="Areas\Administrator\Css\third_party\spell_checker.css" />
+    <Content Include="Areas\Administrator\Css\third_party\spell_checker.min.css" />
+    <Content Include="Areas\Administrator\js\froala_editor.min.js" />
+    <Content Include="Areas\Administrator\js\froala_editor.pkgd.min.js" />
+    <Content Include="Areas\Administrator\js\languages\ar.js" />
+    <Content Include="Areas\Administrator\js\languages\bs.js" />
+    <Content Include="Areas\Administrator\js\languages\cs.js" />
+    <Content Include="Areas\Administrator\js\languages\da.js" />
+    <Content Include="Areas\Administrator\js\languages\de.js" />
+    <Content Include="Areas\Administrator\js\languages\el.js" />
+    <Content Include="Areas\Administrator\js\languages\en_ca.js" />
+    <Content Include="Areas\Administrator\js\languages\en_gb.js" />
+    <Content Include="Areas\Administrator\js\languages\es.js" />
+    <Content Include="Areas\Administrator\js\languages\et.js" />
+    <Content Include="Areas\Administrator\js\languages\fa.js" />
+    <Content Include="Areas\Administrator\js\languages\fi.js" />
+    <Content Include="Areas\Administrator\js\languages\fr.js" />
+    <Content Include="Areas\Administrator\js\languages\he.js" />
+    <Content Include="Areas\Administrator\js\languages\hr.js" />
+    <Content Include="Areas\Administrator\js\languages\hu.js" />
+    <Content Include="Areas\Administrator\js\languages\id.js" />
+    <Content Include="Areas\Administrator\js\languages\it.js" />
+    <Content Include="Areas\Administrator\js\languages\ja.js" />
+    <Content Include="Areas\Administrator\js\languages\ko.js" />
+    <Content Include="Areas\Administrator\js\languages\ku.js" />
+    <Content Include="Areas\Administrator\js\languages\me.js" />
+    <Content Include="Areas\Administrator\js\languages\nb.js" />
+    <Content Include="Areas\Administrator\js\languages\nl.js" />
+    <Content Include="Areas\Administrator\js\languages\pl.js" />
+    <Content Include="Areas\Administrator\js\languages\pt_br.js" />
+    <Content Include="Areas\Administrator\js\languages\pt_pt.js" />
+    <Content Include="Areas\Administrator\js\languages\ro.js" />
+    <Content Include="Areas\Administrator\js\languages\ru.js" />
+    <Content Include="Areas\Administrator\js\languages\sk.js" />
+    <Content Include="Areas\Administrator\js\languages\sr.js" />
+    <Content Include="Areas\Administrator\js\languages\sv.js" />
+    <Content Include="Areas\Administrator\js\languages\th.js" />
+    <Content Include="Areas\Administrator\js\languages\tr.js" />
+    <Content Include="Areas\Administrator\js\languages\uk.js" />
+    <Content Include="Areas\Administrator\js\languages\vi.js" />
+    <Content Include="Areas\Administrator\js\languages\zh_cn.js" />
+    <Content Include="Areas\Administrator\js\languages\zh_tw.js" />
+    <Content Include="Areas\Administrator\js\plugins.pkgd.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\align.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\char_counter.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\code_beautifier.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\code_view.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\colors.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\draggable.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\edit_in_popup.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\emoticons.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\entities.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\file.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\font_family.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\font_size.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\forms.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\fullscreen.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\help.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\image.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\image_manager.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\inline_class.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\inline_style.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\line_breaker.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\line_height.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\link.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\lists.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\paragraph_format.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\paragraph_style.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\print.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\quick_insert.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\quote.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\save.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\special_characters.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\table.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\url.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\video.min.js" />
+    <Content Include="Areas\Administrator\js\plugins\word_paste.min.js" />
+    <Content Include="Areas\Administrator\js\third_party\embedly.min.js" />
+    <Content Include="Areas\Administrator\js\third_party\font_awesome.min.js" />
+    <Content Include="Areas\Administrator\js\third_party\image_tui.min.js" />
+    <Content Include="Areas\Administrator\js\third_party\spell_checker.min.js" />
+    <Content Include="Areas\Administrator\vendor\bootstrap-social\bootstrap-social.css" />
+    <Content Include="Areas\Administrator\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Areas\Administrator\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Areas\Administrator\vendor\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Administrator\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Areas\Administrator\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Areas\Administrator\vendor\datatables-plugins\dataTables.bootstrap.css" />
+    <Content Include="Areas\Administrator\vendor\datatables-plugins\dataTables.bootstrap.js" />
+    <Content Include="Areas\Administrator\vendor\datatables-plugins\dataTables.bootstrap.min.js" />
+    <Content Include="Areas\Administrator\vendor\datatables-plugins\index.html" />
+    <Content Include="Areas\Administrator\vendor\datatables-responsive\dataTables.responsive.css" />
+    <Content Include="Areas\Administrator\vendor\datatables-responsive\dataTables.responsive.js" />
+    <Content Include="Areas\Administrator\vendor\datatables\css\dataTables.bootstrap.css" />
+    <Content Include="Areas\Administrator\vendor\datatables\css\dataTables.bootstrap.min.css" />
+    <Content Include="Areas\Administrator\vendor\datatables\css\dataTables.bootstrap4.css" />
+    <Content Include="Areas\Administrator\vendor\datatables\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Areas\Administrator\vendor\datatables\css\dataTables.foundation.css" />
+    <Content Include="Areas\Administrator\vendor\datatables\css\dataTables.foundation.min.css" />
+    <Content Include="Areas\Administrator\vendor\datatables\css\dataTables.jqueryui.css" />
+    <Content Include="Areas\Administrator\vendor\datatables\css\dataTables.jqueryui.min.css" />
+    <Content Include="Areas\Administrator\vendor\datatables\css\dataTables.material.css" />
+    <Content Include="Areas\Administrator\vendor\datatables\css\dataTables.material.min.css" />
+    <Content Include="Areas\Administrator\vendor\datatables\css\dataTables.semanticui.css" />
+    <Content Include="Areas\Administrator\vendor\datatables\css\dataTables.semanticui.min.css" />
+    <Content Include="Areas\Administrator\vendor\datatables\css\dataTables.uikit.css" />
+    <Content Include="Areas\Administrator\vendor\datatables\css\dataTables.uikit.min.css" />
+    <Content Include="Areas\Administrator\vendor\datatables\css\jquery.dataTables.css" />
+    <Content Include="Areas\Administrator\vendor\datatables\css\jquery.dataTables.min.css" />
+    <Content Include="Areas\Administrator\vendor\datatables\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Areas\Administrator\vendor\datatables\images\favicon.ico" />
+    <Content Include="Areas\Administrator\vendor\datatables\images\sort_asc.png" />
+    <Content Include="Areas\Administrator\vendor\datatables\images\sort_asc_disabled.png" />
+    <Content Include="Areas\Administrator\vendor\datatables\images\sort_both.png" />
+    <Content Include="Areas\Administrator\vendor\datatables\images\sort_desc.png" />
+    <Content Include="Areas\Administrator\vendor\datatables\images\sort_desc_disabled.png" />
+    <Content Include="Areas\Administrator\vendor\datatables\js\dataTables.bootstrap.js" />
+    <Content Include="Areas\Administrator\vendor\datatables\js\dataTables.bootstrap.min.js" />
+    <Content Include="Areas\Administrator\vendor\datatables\js\dataTables.bootstrap4.js" />
+    <Content Include="Areas\Administrator\vendor\datatables\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Areas\Administrator\vendor\datatables\js\dataTables.foundation.js" />
+    <Content Include="Areas\Administrator\vendor\datatables\js\dataTables.foundation.min.js" />
+    <Content Include="Areas\Administrator\vendor\datatables\js\dataTables.jqueryui.js" />
+    <Content Include="Areas\Administrator\vendor\datatables\js\dataTables.jqueryui.min.js" />
+    <Content Include="Areas\Administrator\vendor\datatables\js\dataTables.material.js" />
+    <Content Include="Areas\Administrator\vendor\datatables\js\dataTables.material.min.js" />
+    <Content Include="Areas\Administrator\vendor\datatables\js\dataTables.semanticui.js" />
+    <Content Include="Areas\Administrator\vendor\datatables\js\dataTables.semanticui.min.js" />
+    <Content Include="Areas\Administrator\vendor\datatables\js\dataTables.uikit.js" />
+    <Content Include="Areas\Administrator\vendor\datatables\js\dataTables.uikit.min.js" />
+    <Content Include="Areas\Administrator\vendor\datatables\js\jquery.dataTables.js" />
+    <Content Include="Areas\Administrator\vendor\datatables\js\jquery.dataTables.min.js" />
+    <Content Include="Areas\Administrator\vendor\datatables\js\jquery.js" />
+    <Content Include="Areas\Administrator\vendor\flot-tooltip\jquery.flot.tooltip.js" />
+    <Content Include="Areas\Administrator\vendor\flot-tooltip\jquery.flot.tooltip.min.js" />
+    <Content Include="Areas\Administrator\vendor\flot-tooltip\jquery.flot.tooltip.source.js" />
+    <Content Include="Areas\Administrator\vendor\flot\excanvas.js" />
+    <Content Include="Areas\Administrator\vendor\flot\excanvas.min.js" />
+    <Content Include="Areas\Administrator\vendor\flot\jquery.colorhelpers.js" />
+    <Content Include="Areas\Administrator\vendor\flot\jquery.flot.canvas.js" />
+    <Content Include="Areas\Administrator\vendor\flot\jquery.flot.categories.js" />
+    <Content Include="Areas\Administrator\vendor\flot\jquery.flot.crosshair.js" />
+    <Content Include="Areas\Administrator\vendor\flot\jquery.flot.errorbars.js" />
+    <Content Include="Areas\Administrator\vendor\flot\jquery.flot.fillbetween.js" />
+    <Content Include="Areas\Administrator\vendor\flot\jquery.flot.image.js" />
+    <Content Include="Areas\Administrator\vendor\flot\jquery.flot.js" />
+    <Content Include="Areas\Administrator\vendor\flot\jquery.flot.navigate.js" />
+    <Content Include="Areas\Administrator\vendor\flot\jquery.flot.pie.js" />
+    <Content Include="Areas\Administrator\vendor\flot\jquery.flot.resize.js" />
+    <Content Include="Areas\Administrator\vendor\flot\jquery.flot.selection.js" />
+    <Content Include="Areas\Administrator\vendor\flot\jquery.flot.stack.js" />
+    <Content Include="Areas\Administrator\vendor\flot\jquery.flot.symbol.js" />
+    <Content Include="Areas\Administrator\vendor\flot\jquery.flot.threshold.js" />
+    <Content Include="Areas\Administrator\vendor\flot\jquery.flot.time.js" />
+    <Content Include="Areas\Administrator\vendor\flot\jquery.js" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\css\font-awesome.css" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="Areas\Administrator\vendor\jquery\jquery.js" />
+    <Content Include="Areas\Administrator\vendor\jquery\jquery.min.js" />
+    <Content Include="Areas\Administrator\vendor\metisMenu\metisMenu.css" />
+    <Content Include="Areas\Administrator\vendor\metisMenu\metisMenu.js" />
+    <Content Include="Areas\Administrator\vendor\metisMenu\metisMenu.min.css" />
+    <Content Include="Areas\Administrator\vendor\metisMenu\metisMenu.min.js" />
+    <Content Include="Areas\Administrator\vendor\morrisjs\morris.css" />
+    <Content Include="Areas\Administrator\vendor\morrisjs\morris.js" />
+    <Content Include="Areas\Administrator\vendor\morrisjs\morris.min.js" />
+    <Content Include="Areas\Administrator\vendor\raphael\raphael.js" />
+    <Content Include="Areas\Administrator\vendor\raphael\raphael.min.js" />
+    <Content Include="Areas\Shopper\Content\bootstrap-theme.css" />
+    <Content Include="Areas\Shopper\Content\bootstrap-theme.min.css" />
+    <Content Include="Areas\Shopper\Content\bootstrap.css" />
+    <Content Include="Areas\Shopper\Content\bootstrap.min.css" />
+    <Content Include="Areas\Shopper\Content\css\bootstrap.css" />
+    <Content Include="Areas\Shopper\Content\css\cloud-zoom.css" />
+    <Content Include="Areas\Shopper\Content\css\font-awesome.css" />
+    <Content Include="Areas\Shopper\Content\css\jstarbox.css" />
+    <Content Include="Areas\Shopper\Content\css\style.css" />
+    <Content Include="Areas\Shopper\Content\js\bootstrap.js" />
+    <Content Include="Areas\Shopper\Content\js\cloud-zoom.1.0.2.min.js" />
+    <Content Include="Areas\Shopper\Content\js\easing.js" />
+    <Content Include="Areas\Shopper\Content\js\easyResponsiveTabs.js" />
+    <Content Include="Areas\Shopper\Content\js\jquery-1.11.1.min.js" />
+    <Content Include="Areas\Shopper\Content\js\jquery.js" />
+    <Content Include="Areas\Shopper\Content\js\jquery.vide.min.js" />
+    <Content Include="Areas\Shopper\Content\js\jquery.zoomtoo.js" />
+    <Content Include="Areas\Shopper\Content\js\jstarbox.js" />
+    <Content Include="Areas\Shopper\Content\js\modernizr.custom.js" />
+    <Content Include="Areas\Shopper\Content\js\move-top.js" />
+    <Content Include="Areas\Shopper\Content\PagedList.css" />
+    <Content Include="Areas\Shopper\fonts\fontawesome-webfont.svg" />
+    <Content Include="Areas\Shopper\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Shopper\vendor\bootstrap-social\bootstrap-social.css" />
+    <Content Include="Areas\Shopper\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Areas\Shopper\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Areas\Shopper\vendor\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Shopper\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Areas\Shopper\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Areas\Shopper\vendor\datatables-plugins\dataTables.bootstrap.css" />
+    <Content Include="Areas\Shopper\vendor\datatables-plugins\dataTables.bootstrap.js" />
+    <Content Include="Areas\Shopper\vendor\datatables-plugins\dataTables.bootstrap.min.js" />
+    <Content Include="Areas\Shopper\vendor\datatables-plugins\index.html" />
+    <Content Include="Areas\Shopper\vendor\datatables-responsive\dataTables.responsive.css" />
+    <Content Include="Areas\Shopper\vendor\datatables-responsive\dataTables.responsive.js" />
+    <Content Include="Areas\Shopper\vendor\datatables\css\dataTables.bootstrap.css" />
+    <Content Include="Areas\Shopper\vendor\datatables\css\dataTables.bootstrap.min.css" />
+    <Content Include="Areas\Shopper\vendor\datatables\css\dataTables.bootstrap4.css" />
+    <Content Include="Areas\Shopper\vendor\datatables\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Areas\Shopper\vendor\datatables\css\dataTables.foundation.css" />
+    <Content Include="Areas\Shopper\vendor\datatables\css\dataTables.foundation.min.css" />
+    <Content Include="Areas\Shopper\vendor\datatables\css\dataTables.jqueryui.css" />
+    <Content Include="Areas\Shopper\vendor\datatables\css\dataTables.jqueryui.min.css" />
+    <Content Include="Areas\Shopper\vendor\datatables\css\dataTables.material.css" />
+    <Content Include="Areas\Shopper\vendor\datatables\css\dataTables.material.min.css" />
+    <Content Include="Areas\Shopper\vendor\datatables\css\dataTables.semanticui.css" />
+    <Content Include="Areas\Shopper\vendor\datatables\css\dataTables.semanticui.min.css" />
+    <Content Include="Areas\Shopper\vendor\datatables\css\dataTables.uikit.css" />
+    <Content Include="Areas\Shopper\vendor\datatables\css\dataTables.uikit.min.css" />
+    <Content Include="Areas\Shopper\vendor\datatables\css\jquery.dataTables.css" />
+    <Content Include="Areas\Shopper\vendor\datatables\css\jquery.dataTables.min.css" />
+    <Content Include="Areas\Shopper\vendor\datatables\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Areas\Shopper\vendor\datatables\images\favicon.ico" />
+    <Content Include="Areas\Shopper\vendor\datatables\images\sort_asc.png" />
+    <Content Include="Areas\Shopper\vendor\datatables\images\sort_asc_disabled.png" />
+    <Content Include="Areas\Shopper\vendor\datatables\images\sort_both.png" />
+    <Content Include="Areas\Shopper\vendor\datatables\images\sort_desc.png" />
+    <Content Include="Areas\Shopper\vendor\datatables\images\sort_desc_disabled.png" />
+    <Content Include="Areas\Shopper\vendor\datatables\js\dataTables.bootstrap.js" />
+    <Content Include="Areas\Shopper\vendor\datatables\js\dataTables.bootstrap.min.js" />
+    <Content Include="Areas\Shopper\vendor\datatables\js\dataTables.bootstrap4.js" />
+    <Content Include="Areas\Shopper\vendor\datatables\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Areas\Shopper\vendor\datatables\js\dataTables.foundation.js" />
+    <Content Include="Areas\Shopper\vendor\datatables\js\dataTables.foundation.min.js" />
+    <Content Include="Areas\Shopper\vendor\datatables\js\dataTables.jqueryui.js" />
+    <Content Include="Areas\Shopper\vendor\datatables\js\dataTables.jqueryui.min.js" />
+    <Content Include="Areas\Shopper\vendor\datatables\js\dataTables.material.js" />
+    <Content Include="Areas\Shopper\vendor\datatables\js\dataTables.material.min.js" />
+    <Content Include="Areas\Shopper\vendor\datatables\js\dataTables.semanticui.js" />
+    <Content Include="Areas\Shopper\vendor\datatables\js\dataTables.semanticui.min.js" />
+    <Content Include="Areas\Shopper\vendor\datatables\js\dataTables.uikit.js" />
+    <Content Include="Areas\Shopper\vendor\datatables\js\dataTables.uikit.min.js" />
+    <Content Include="Areas\Shopper\vendor\datatables\js\jquery.dataTables.js" />
+    <Content Include="Areas\Shopper\vendor\datatables\js\jquery.dataTables.min.js" />
+    <Content Include="Areas\Shopper\vendor\datatables\js\jquery.js" />
+    <Content Include="Areas\Shopper\vendor\flot-tooltip\jquery.flot.tooltip.js" />
+    <Content Include="Areas\Shopper\vendor\flot-tooltip\jquery.flot.tooltip.min.js" />
+    <Content Include="Areas\Shopper\vendor\flot-tooltip\jquery.flot.tooltip.source.js" />
+    <Content Include="Areas\Shopper\vendor\flot\excanvas.js" />
+    <Content Include="Areas\Shopper\vendor\flot\excanvas.min.js" />
+    <Content Include="Areas\Shopper\vendor\flot\jquery.colorhelpers.js" />
+    <Content Include="Areas\Shopper\vendor\flot\jquery.flot.canvas.js" />
+    <Content Include="Areas\Shopper\vendor\flot\jquery.flot.categories.js" />
+    <Content Include="Areas\Shopper\vendor\flot\jquery.flot.crosshair.js" />
+    <Content Include="Areas\Shopper\vendor\flot\jquery.flot.errorbars.js" />
+    <Content Include="Areas\Shopper\vendor\flot\jquery.flot.fillbetween.js" />
+    <Content Include="Areas\Shopper\vendor\flot\jquery.flot.image.js" />
+    <Content Include="Areas\Shopper\vendor\flot\jquery.flot.js" />
+    <Content Include="Areas\Shopper\vendor\flot\jquery.flot.navigate.js" />
+    <Content Include="Areas\Shopper\vendor\flot\jquery.flot.pie.js" />
+    <Content Include="Areas\Shopper\vendor\flot\jquery.flot.resize.js" />
+    <Content Include="Areas\Shopper\vendor\flot\jquery.flot.selection.js" />
+    <Content Include="Areas\Shopper\vendor\flot\jquery.flot.stack.js" />
+    <Content Include="Areas\Shopper\vendor\flot\jquery.flot.symbol.js" />
+    <Content Include="Areas\Shopper\vendor\flot\jquery.flot.threshold.js" />
+    <Content Include="Areas\Shopper\vendor\flot\jquery.flot.time.js" />
+    <Content Include="Areas\Shopper\vendor\flot\jquery.js" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\css\font-awesome.css" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="Areas\Shopper\vendor\jquery\jquery.js" />
+    <Content Include="Areas\Shopper\vendor\jquery\jquery.min.js" />
+    <Content Include="Areas\Shopper\vendor\metisMenu\metisMenu.css" />
+    <Content Include="Areas\Shopper\vendor\metisMenu\metisMenu.js" />
+    <Content Include="Areas\Shopper\vendor\metisMenu\metisMenu.min.css" />
+    <Content Include="Areas\Shopper\vendor\metisMenu\metisMenu.min.js" />
+    <Content Include="Areas\Shopper\vendor\morrisjs\morris.css" />
+    <Content Include="Areas\Shopper\vendor\morrisjs\morris.js" />
+    <Content Include="Areas\Shopper\vendor\morrisjs\morris.min.js" />
+    <Content Include="Areas\Shopper\vendor\raphael\raphael.js" />
+    <Content Include="Areas\Shopper\vendor\raphael\raphael.min.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Images\20161111104807_221_mj_logo_new-01-01.jpg" />
+    <Content Include="Images\57ea67b554764-01.jpg" />
+    <Content Include="Images\5847eab1cef1014c0b5e4840-01-01.jpg" />
+    <Content Include="Images\67363027_358590181479334_78320145981767680_n.jpg" />
+    <Content Include="Images\BANNER\banner_0526.png" />
+    <Content Include="Images\BANNER\banner_0527.jpg" />
+    <Content Include="Images\BANNER\block_home_category1.jpg" />
+    <Content Include="Images\BANNER\block_home_category2.jpg" />
+    <Content Include="Images\BANNER\d84yn1k-1bcd2f5f-25c6-4106-a14b-afecc687fa43.jpg" />
+    <Content Include="Images\BANNER\photo_2019-11-05_23-37-59.jpg" />
+    <Content Include="Images\bulova-logo-black-01-01.jpg" />
+    <Content Include="Images\Caravelle-New-Yorklogo-01-01.jpg" />
+    <Content Include="Images\Combo đồng hồ nữ dây kim loại Anne Klein AK1470GBST 32mm - Vàng.jpg" />
+    <Content Include="Images\Combo đồng hồ nữ dây kim loại Anne Klein AK2245RTST 26mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Combo đồng hồ nữ dây kim loại Anne Klein AK2716RNST 26mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Combo đồng hồ nữ dây kim loại Anne Klein AK3140INST 28mm - Vàng.jpg" />
+    <Content Include="Images\Day-da-be-da-bo-dong-ho-chinh-hang.jpg" />
+    <Content Include="Images\dong-ho-nu-thoi-trang-hieu-guou-1461-1-1461M-GO-4.jpg" />
+    <Content Include="Images\Dây Da nam Daniel Wellington Bristol 40mm - Rose Gold.jpg" />
+    <Content Include="Images\Dây Da nam Daniel Wellington Reading 40mm - Rose Gold.jpg" />
+    <Content Include="Images\Dây Da nam Daniel Wellington Sheffield 40mm  - Rose Gold.jpg" />
+    <Content Include="Images\Dây Da nam Daniel Wellington Sheffield 40mm - Sliver.jpg" />
+    <Content Include="Images\Dây Da nam Daniel Wellington St Mawes 40mm - Rose Gold.jpg" />
+    <Content Include="Images\Dây Da nam Daniel Wellington York 40mm - Rose Gold.jpg" />
+    <Content Include="Images\Dây Da nữ Daniel Wellington Bristol 36mm - Rose Gold.jpg" />
+    <Content Include="Images\Dây Da nữ Daniel Wellington Reading 36mm - Rose Gold.jpg" />
+    <Content Include="Images\Dây Da nữ Daniel Wellington Sheffield 36mm  - Rose Gold.jpg" />
+    <Content Include="Images\Dây Da nữ Daniel Wellington Sheffield 36mm - Sliver.jpg" />
+    <Content Include="Images\Dây Da nữ Daniel Wellington St Mawes 36mm - Rose Gold.jpg" />
+    <Content Include="Images\Dây Da nữ Daniel Wellington York 36mm - Rose Gold.jpg" />
+    <Content Include="Images\Dây Nato nam Daniel Wellington Cambridge 40mm - Rose Gold.jpg" />
+    <Content Include="Images\Dây Nato nam Daniel Wellington Canterbury 40mm - Rose Gold.jpg" />
+    <Content Include="Images\Dây Nato nam Daniel Wellington Cornwall 40mm - Rose Gold.jpg" />
+    <Content Include="Images\Dây Nato nam Daniel Wellington Cornwall 40mm - Sliver.jpg" />
+    <Content Include="Images\Dây Nato nam Daniel Wellington Glasgow 40mm - Rose Gold.jpg" />
+    <Content Include="Images\Dây Nato nam Daniel Wellington Oxford 40mm - Rose Gold.jpg" />
+    <Content Include="Images\Dây Nato nữ Daniel Wellington Canterbury 36mm - Rose Gold.jpg" />
+    <Content Include="Images\Dây Nato nữ Daniel Wellington Classy Winchester 26mm - Rose Gold.jpg" />
+    <Content Include="Images\Dây Nato nữ Daniel Wellington Classy Winchester 34mm - Rose Gold.jpg" />
+    <Content Include="Images\Dây Nato nữ Daniel Wellington Cornwall 36mm  - Rose Gold.jpg" />
+    <Content Include="Images\Dây Nato nữ Daniel Wellington Cornwall 36mm.jpg" />
+    <Content Include="Images\Dây Nato nữ Daniel Wellington Glasgow 36mm - Rose Gold.jpg" />
+    <Content Include="Images\Dây Nato nữ Daniel Wellington Oxford 36mm - Rose Gold.jpg" />
+    <Content Include="Images\Dây Nato nữ Daniel Wellington Winchester 36mm - Rose Gold.jpg" />
+    <Content Include="Images\house_path_summer_128404_1920x1080.jpg" />
+    <Content Include="Images\logo-01-01.jpg" />
+    <Content Include="Images\logo-daniel-wellington-01-01.jpg" />
+    <Content Include="Images\skagen-logo-01-01.jpg" />
+    <Content Include="Images\thumb_31585_logo_retailer_1x-01-01.jpg" />
+    <Content Include="Images\Untitled-5-01-01.jpg" />
+    <Content Include="Images\Vòng tay Daniel Wellington Classic Cuff L - Bạc.jpg" />
+    <Content Include="Images\Vòng tay Daniel Wellington Classic Cuff L - Vàng Hồng.jpg" />
+    <Content Include="Images\Vòng tay Daniel Wellington Classic Cuff S - Bạc.jpg" />
+    <Content Include="Images\Vòng tay Daniel Wellington Classic Cuff S - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ dây kim loại Casio A159WAD-1DF 36.6 x 33.2mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ dây kim loại Casio A159WGED-1DF 36 x 33mm - Vàng.jpg" />
+    <Content Include="Images\Đồng hồ dây kim loại Casio A168WEM-7DF 38.6mm x 36.9mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ dây kim loại Casio A168WG-9WDF 38.6mm x 36.3mm – Vàng.jpg" />
+    <Content Include="Images\Đồng hồ dây kim loại Casio B640WD-1AVDF 38.9 x 35mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ dây kim loại Casio LA680WA-1DF 30.3×24.6mm – Bạc.jpg" />
+    <Content Include="Images\Đồng hồ dây kim loại Casio LA680WGA-9DF 33.5mm x 28.6mm – Vàng.jpg" />
+    <Content Include="Images\Đồng hồ nam dây cao su Casio W-218H-2AVDF 44.4 mm x 43.2 mm - Xanh Đen.jpg" />
+    <Content Include="Images\Đồng hồ nam dây cao su Casio W-218H-2AVDF 44.4 mm x 43.2 mm - Đen Đỏ.jpg" />
+    <Content Include="Images\Đồng hồ nam dây cao su Casio W-W218H-1AVDF 44,4×43,2mm - Đen.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Daniel Wellington Classic Black Bristol 40mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Daniel Wellington Classic Black Reading 40mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Daniel Wellington Classic Black Sheffield 40mm - Vàng Hong.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Daniel Wellington Classic Black St Mawes 40mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Daniel Wellington Classic Black York 40mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Daniel Wellington Classic Bristol 40mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Daniel Wellington Classic Reading 40mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Daniel Wellington Classic Sheffield 40mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Daniel Wellington Classic St Mawes 40mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Daniel Wellington Classic York 40mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Fossil FS5159 45mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Fossil FS5237 44mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Fossil FS5268 44mm - Vàng.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Fossil FSBQ2064 45mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Fossil FSME3041 44mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Skagen SKW6066 40mm - Vàng.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Skagen SKW6086 40mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Skagen SKW6210 40mm - Đen.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Skagen SKW6215 40mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nam dây da Skagen SKW6217 40mm - Vàng.jpg" />
+    <Content Include="Images\Đồng hồ nam dây Inox Casio AQ-230A-7DMQ 38mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nam dây Inox Casio AQ-230GA-9DMQ 38mm - Vàng.jpg" />
+    <Content Include="Images\Đồng hồ nam dây kim loại Fossil FS5236 44mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nam dây kim loại Fossil FS5238 44mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nam dây lưới Skagen SKW6052 45mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nam dây lưới Skagen SKW6053 45mm - Đen.jpg" />
+    <Content Include="Images\Đồng hồ nam dây lưới Skagen SKW6296 40mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây cao su CASIO BABY-G BA-110-1A 46,3×43,4mm - Đen.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây cao su CASIO BABY-G BA-110-4A2 46,3×43,4mm - Hồng Nhạt.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Anne Klein AK1396BMBK 34mm - Vàng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Caravelle 43I167 36mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Caravelle 43N103 30mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Casio LA670WL-1BDF 30.3 mm x 24.6 mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Casio LA670WL-2A2DF 30mm x 24,6mm – Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Casio LA670WL-2ADF 30mm x 24,6mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Daniel Wellington Classic Black Bristol 36mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Daniel Wellington Classic Black Reading 36mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Daniel Wellington Classic Black Sheffield 36mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Daniel Wellington Classic Black St Mawes 36mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Daniel Wellington Classic Black York 36mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Daniel Wellington Classic Bristol 36mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Daniel Wellington Classic Reading 36mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Daniel Wellington Classic Sheffield 36mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Daniel Wellington Classic St Mawes 36mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Daniel Wellington Classic York 36mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Marc Jacobs  MBM1283 36mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Marc Jacobs MJ-MBM1267 37mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Marc Jacobs MJ1599 36mm - Vàng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Marc Jacobs MJ1600 28mm - Vàng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Skagen SKW2354 34mm - Vàng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây da Skagen SKW2390 34mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Anne Klein 12-2269MPTT 35mm - Vàng, Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Anne Klein 1980BMRG 34mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Anne Klein AK1362RGRG 32mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Anne Klein AK1980BKGB 28mm - Vàng, Đen.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Anne Klein AK2158RGRG 30mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Anne Klein AK2159SVSV 30mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Anne Klein AK2435SVTT 28mm - Vàng, Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Anne Klein AK2677MPRT 28mm - Vàng Hồng, Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Anne Klein AK3070MPRG 28mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Bulova 97P111 27mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Bulova 98L212 23mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Bulova 98L213 23mm - Vàng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Caravelle 43L165 37mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Caravelle 43L186 36mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Caravelle 43L193 30mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Caravelle 43M112 36mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Caravelle 44L170 36mm - Vàng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Caravelle 44L175 30mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Caravelle 44L179 36mm - Vàng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Caravelle 44L214 36mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Caravelle 44L215 36mm - Vàng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Caravelle 44L218 36mm - Vàng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Caravelle 44L233 36mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Caravelle 44N109 38mm - Vàng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Caravelle 45L157 28mm - Vàng Hồng,Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Casio B650WC-5ADF 43,1 x 41,2mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Casio LA670WAD-1DF 30,3×24,6mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Casio LA670WEM-7DF 30mm x 24.6 mm – Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Casio LA670WGAD-1DF 30,3×24,6mm - Vàng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Casio LA680WA-2CDF 33.5 mm x 28.6 mm – Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Casio LA680WA-4CDF 33.5 mm x 28.6 mm – Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Casio LA680WA-7DF 30,3 × 24,6 mm – Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Casio LA680WA-7DF 31,2×25,2mm – Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Casio LA690WA-1DF 30,4×26,7mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Casio LA690WEM-7DF 30,4×26,7mm – Bạc.jpg" />
+    <Content Include="Images\Đồng Hồ Nữ dây kim loại Casio LA690WGA-9DF 30,4×26,7mm - Vàng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Fossil ES3590 38mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Marc Jacobs  MBM3245 36mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Marc Jacobs  MBM3248 28mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Marc Jacobs MJ3572 34mm - Bạc.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Marc Jacobs MJ3574 34mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Michael Kors MK3192 39mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Michael Kors MK3640 36.5mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Michael Kors MK3643 33mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Michael Kors MK3706 36.5mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây kim loại Michael Kors MK6551 40mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây lưới Skagen SKW2151 30mm - Vàng Hồng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây lưới Skagen SKW2385 30mm - Vàng.jpg" />
+    <Content Include="Images\Đồng hồ nữ dây lưới Skagen SKW2391 30mm - Bạc.jpg" />
+    <Content Include="Images\Đồng Hồ Nữ Dây Nhựa Casio BABY-G BA-110-4A1  46,3×43,4mm - Hồng.jpg" />
+    <Content Include="Images\Đồng Hồ Nữ Dây Nhựa Casio BABY-G BA-110-7A1 46,3×43,4mm - Trắng.jpg" />
+    <Content Include="Images\Đồng Hồ Nữ Dây Nhựa Casio BABY-G BA-110-7A3 46,3×43,4mm - Trắng.jpg" />
+    <Content Include="Images\Đồng Hồ Nữ Dây Nhựa Casio BABY-G BA-110BC-1A 46,3×43,4mm - Đen.jpg" />
+    <Content Include="Images\Đồng Hồ Nữ Dây Nhựa Casio BABY-G BA-110BE-4A 46,3×43,4mm - Hồng.jpg" />
+    <Content Include="Images\Đồng Hồ Nữ Dây Nhựa Casio BABY-G BA-110BE-7A 46,3×43,4mm - Trắng Xanh.jpg" />
+    <Content Include="Images\Đồng Hồ Nữ Dây Nhựa Casio BABY-G BA-110CF-1A 46,3×43,4mm - Đen.jpg" />
+    <Content Include="Images\Đồng Hồ Nữ Dây Nhựa Casio BABY-G BA-110CF-7A 46,3×43,4mm - Trắng.jpg" />
+    <Content Include="Images\Đồng Hồ Nữ Dây Nhựa Casio BABY-G BA-110CH-1A 46,3×43,4mm - Đen Tím.jpg" />
+    <Content Include="Images\Đồng Hồ Nữ Dây Nhựa Casio BABY-G BA-110CH-3A 46,3×43,4mm - Xanh.jpg" />
+    <Content Include="Images\Đồng Hồ Nữ Dây Nhựa Casio BABY-G BA-110CH-7A 46,3×43,4mm - Trắng.jpg" />
+    <Content Include="Images\Đồng Hồ Nữ Dây Nhựa Casio BABY-G BA-110CP-4A 46,3×43,4mm - Hồng.jpg" />
+    <Content Include="Images\Đồng Hồ Nữ Dây Nhựa Casio BABY-G BA-110CR-2A 46,3×43,4mm - Xanh.jpg" />
+    <Content Include="Images\Đồng Hồ Nữ Dây Nhựa Casio BABY-G BA-110CR-4A 46,3×43,4mm - Đỏ Đen.jpg" />
+    <Content Include="Images\Đồng Hồ Nữ Dây Nhựa Casio BABY-G BA-110CR-7A 46,3×43,4mm - Trắng.jpg" />
+    <Content Include="Images\Đồng Hồ Nữ Dây Nhựa Casio BABY-G BA-110GA-1A1 46,3×43,4mm - Đen.jpg" />
+    <Content Include="Images\Đồng Hồ Nữ Vải Jean Casio BABY-G BA-110DC-2A2 46,3×43,4mm - Xanh.jpg" />
+    <Content Include="Images\Đồng-Hồ-Nam-FNGEEN-DÂY-HỢP-KIM-5.jpg" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Administrator\Views\web.config" />
+    <Content Include="Areas\Administrator\Content\less\mixins.less" />
+    <Content Include="Areas\Administrator\Content\less\sb-admin-2.less" />
+    <Content Include="Areas\Administrator\Content\less\variables.less" />
+    <Content Include="Areas\Administrator\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Administrator\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Administrator\Views\DanhMuc\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Administrator\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Administrator\Views\DanhMuc\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\DanhMuc\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\HoaDon\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\HoaDon\Index2.cshtml" />
+    <Content Include="Areas\Administrator\Views\HoaDon\Index3.cshtml" />
+    <Content Include="Areas\Administrator\Views\HoaDon\Index4.cshtml" />
+    <Content Include="Areas\Administrator\Views\HoaDon\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\HoaDon\Details2.cshtml" />
+    <Content Include="Areas\Administrator\Views\HoaDon\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\KhachHang\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\LoaiSP\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\LoaiSP\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\LoaiSP\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\SanPham\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\SanPham\Index2.cshtml" />
+    <Content Include="Areas\Administrator\Views\SanPham\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\SanPham\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\SanPham\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\ThongKe\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\ThongKe\DoanhThuThangNam.cshtml" />
+    <Content Include="Areas\Administrator\Views\ThongKe\DoanhThuCacThang.cshtml" />
+    <Content Include="Areas\Administrator\Views\ThongKe\DoanhThuNam.cshtml" />
+    <Content Include="Areas\Administrator\Views\ThuongHieu\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\ThuongHieu\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\ThuongHieu\Edit.cshtml" />
+    <Content Include="Areas\Administrator\vendor\bootstrap-social\bootstrap-social.less" />
+    <Content Include="Areas\Administrator\vendor\bootstrap-social\bootstrap-social.scss" />
+    <Content Include="Areas\Administrator\vendor\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Administrator\vendor\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Administrator\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Administrator\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\Administrator\vendor\datatables-responsive\dataTables.responsive.scss" />
+    <Content Include="Areas\Administrator\vendor\datatables\images\Sorting icons.psd" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\css\font-awesome.css.map" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\less\animated.less" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\less\core.less" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\less\extras.less" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\less\fixed-width.less" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\less\font-awesome.less" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\less\icons.less" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\less\larger.less" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\less\list.less" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\less\mixins.less" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\less\path.less" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\less\screen-reader.less" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\less\spinning.less" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\less\stacked.less" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\less\variables.less" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\scss\_animated.scss" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\scss\_core.scss" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\scss\_extras.scss" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\scss\_icons.scss" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\scss\_larger.scss" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\scss\_list.scss" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\scss\_mixins.scss" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\scss\_path.scss" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\scss\_screen-reader.scss" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\scss\_spinning.scss" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\scss\_stacked.scss" />
+    <Content Include="Areas\Administrator\vendor\font-awesome\scss\_variables.scss" />
+    <Content Include="Areas\Shopper\Views\web.config" />
+    <Content Include="Areas\Shopper\Content\less\mixins.less" />
+    <Content Include="Areas\Shopper\Content\less\sb-admin-2.less" />
+    <Content Include="Areas\Shopper\Content\less\variables.less" />
+    <Content Include="Areas\Shopper\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Shopper\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\Shopper\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\Shopper\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Areas\Shopper\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Shopper\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Shopper\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Shopper\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Shopper\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\Shopper\vendor\bootstrap-social\bootstrap-social.less" />
+    <Content Include="Areas\Shopper\vendor\bootstrap-social\bootstrap-social.scss" />
+    <Content Include="Areas\Shopper\vendor\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Shopper\vendor\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Shopper\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Shopper\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\Shopper\vendor\datatables-responsive\dataTables.responsive.scss" />
+    <Content Include="Areas\Shopper\vendor\datatables\images\Sorting icons.psd" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\css\font-awesome.css.map" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\less\animated.less" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\less\core.less" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\less\extras.less" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\less\fixed-width.less" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\less\font-awesome.less" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\less\icons.less" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\less\larger.less" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\less\list.less" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\less\mixins.less" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\less\path.less" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\less\screen-reader.less" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\less\spinning.less" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\less\stacked.less" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\less\variables.less" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\scss\_animated.scss" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\scss\_core.scss" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\scss\_extras.scss" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\scss\_icons.scss" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\scss\_larger.scss" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\scss\_list.scss" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\scss\_mixins.scss" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\scss\_path.scss" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\scss\_screen-reader.scss" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\scss\_spinning.scss" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\scss\_stacked.scss" />
+    <Content Include="Areas\Shopper\vendor\font-awesome\scss\_variables.scss" />
+    <Content Include="Areas\Shopper\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Shopper\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Shopper\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Shopper\Views\Errors\NotFound.cshtml" />
+    <Content Include="Areas\Shopper\Views\GioHang\Index.cshtml" />
+    <Content Include="Areas\Shopper\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Shopper\Views\SanPham\SanPhamTheoLoai.cshtml" />
+    <Content Include="Areas\Shopper\Views\SanPham\SanPhamTheoThuongHieu.cshtml" />
+    <Content Include="Areas\Shopper\Views\SanPham\SanPhamTheoTenSP.cshtml" />
+    <Content Include="Areas\Shopper\Views\SanPham\SanPhamTheoTenLoai.cshtml" />
+    <Content Include="Areas\Shopper\Views\SanPham\SanPhamMoiNhat.cshtml" />
+    <Content Include="Areas\Shopper\Views\SanPham\SanPhamGiamGiaCaoNhat.cshtml" />
+    <Content Include="Areas\Shopper\Views\SanPham\ChiTietSanPham.cshtml" />
+    <Content Include="Areas\Shopper\Views\SanPham\SanPhamTheoDanhMuc.cshtml" />
+    <Content Include="Areas\Shopper\Views\ThanhToan\Index.cshtml" />
+    <Content Include="Areas\Shopper\Views\ThanhToan\HoaDon.cshtml" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56257</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44315/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "Doanh thu năm";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    WEB.Areas.Administrator.AdminDB aDB = new WEB.Areas.Administrator.AdminDB();
+}
+
+<h2>Doanh thu năm @DateTime.Now.Year</h2>
+<script>
+    var thang1 =@aDB.TinhDoanhThuTheoThangNam(1,DateTime.Now.Year);
+
+    var thang2 =@aDB.TinhDoanhThuTheoThangNam(2,DateTime.Now.Year);
+
+    var thang3 =@aDB.TinhDoanhThuTheoThangNam(3,DateTime.Now.Year);
+
+    var thang4 =@aDB.TinhDoanhThuTheoThangNam(4,DateTime.Now.Year);
+
+    var thang5 =@aDB.TinhDoanhThuTheoThangNam(5,DateTime.Now.Year);
+
+    var thang6 =@aDB.TinhDoanhThuTheoThangNam(6,DateTime.Now.Year);
+
+    var thang7 =@aDB.TinhDoanhThuTheoThangNam(7,DateTime.Now.Year);
+
+    var thang8 =@aDB.TinhDoanhThuTheoThangNam(8,DateTime.Now.Year);
+
+    var thang9 =@aDB.TinhDoanhThuTheoThangNam(9,DateTime.Now.Year);
+
+    var thang10 =@aDB.TinhDoanhThuTheoThangNam(10,DateTime.Now.Year);
+
+    var thang11 =@aDB.TinhDoanhThuTheoThangNam(11,DateTime.Now.Year);
+
+    var thang12 =@aDB.TinhDoanhThuTheoThangNam(12,DateTime.Now.Year);
+
+    window.onload = function () {
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            theme: "light2",
+            axisY: {
+                title: "Đơn vị: VNĐ"
+            },
+            data: [{
+                type: "column",
+                dataPoints: [
+                    { y: thang1, label: "Tháng 1" },
+                    { y: thang2, label: "Tháng 2" },
+                    { y: thang3, label: "Tháng 3" },
+                    { y: thang4, label: "Tháng 4" },
+                    { y: thang5, label: "Tháng 5" },
+                    { y: thang6, label: "Tháng 6" },
+                    { y: thang7, label: "Tháng 7" },
+                    { y: thang8, label: "Tháng 8" },
+                    { y: thang9, label: "Tháng 9" },
+                    { y: thang10, label: "Tháng 10" },
+                    { y: thang11, label: "Tháng 11" },
+                    { y: thang12, label: "Tháng 12" }
+                ]
+            }]
+        });
+        chart.render();
+
+    }
+</script>
+<div id="chartContainer" style="height: 370px; width: 100%;margin-top:50px;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<a href="@Url.Action("Index", "ThongKe")"><i class="fa fa-backward"></i> Quay lại</a>
+<div style="position:absolute;left:165px;bottom:0px;font-size:20px;">
+    <a href="@Url.Action("DoanhThuCacThang", "ThongKe", new { id=1})"><i class="fa fa-info"></i></a>
+</div>
+<div style="position:absolute;left:300px;bottom:0px;font-size:20px;">
+    <a href="@Url.Action("DoanhThuCacThang", "ThongKe", new { id=2})"><i class="fa fa-info"></i></a>
+</div>
+<div style="position:absolute;left:420px;bottom:0px;font-size:20px;">
+    <a href="@Url.Action("DoanhThuCacThang", "ThongKe", new { id=3})"><i class="fa fa-info"></i></a>
+</div>
+<div style="position:absolute;left:540px;bottom:0px;font-size:20px;">
+    <a href="@Url.Action("DoanhThuCacThang", "ThongKe", new { id=4})"><i class="fa fa-info"></i></a>
+</div>
+<div style="position:absolute;left:660px;bottom:0px;font-size:20px;">
+    <a href="@Url.Action("DoanhThuCacThang", "ThongKe", new { id=5})"><i class="fa fa-info"></i></a>
+</div>
+<div style="position:absolute;left:790px;bottom:0px;font-size:20px;">
+    <a href="@Url.Action("DoanhThuCacThang", "ThongKe", new { id=6})"><i class="fa fa-info"></i></a>
+</div>
+<div style="position:absolute;left:910px;bottom:0px;font-size:20px;">
+    <a href="@Url.Action("DoanhThuCacThang", "ThongKe", new { id=7})"><i class="fa fa-info"></i></a>
+</div>
+<div style="position:absolute;left:1030px;bottom:0px;font-size:20px;">
+    <a href="@Url.Action("DoanhThuCacThang", "ThongKe", new { id=8})"><i class="fa fa-info"></i></a>
+</div>
+<div style="position:absolute;left:1160px;bottom:0px;font-size:20px;">
+    <a href="@Url.Action("DoanhThuCacThang", "ThongKe", new { id=9})"><i class="fa fa-info"></i></a>
+</div>
+<div style="position:absolute;left:1280px;bottom:0px;font-size:20px;">
+    <a href="@Url.Action("DoanhThuCacThang", "ThongKe", new { id=10})"><i class="fa fa-info"></i></a>
+</div>
+<div style="position:absolute;left:1400px;bottom:0px;font-size:20px;">
+    <a href="@Url.Action("DoanhThuCacThang", "ThongKe",new { id=11})"><i class="fa fa-info"></i></a>
+</div>
+<div style="position:absolute;left:1520px;bottom:0px;font-size:20px;">
+    <a href="@Url.Action("DoanhThuCacThang", "ThongKe",new { id=12})"><i class="fa fa-info"></i></a>
+</div>
+

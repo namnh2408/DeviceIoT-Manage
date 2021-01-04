@@ -1,0 +1,85 @@
+﻿
+
+@{
+    ViewBag.Title = "Hoá đơn";
+    Layout = "~/Areas/Shopper/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    WEB.Areas.Shopper.Models.UserContext db = new WEB.Areas.Shopper.Models.UserContext();
+    var cus = db.KhachHangs.Find(Session["Phone"]);
+}
+<div class="container">
+    <div class="spec ">
+        <h3><a href="#" style="text-decoration:none;">Hoá đơn @Session["MHD"]</a></h3>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    Họ và tên khách: @cus.HoTenKH
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <br />
+                        Số điện thoại: @Session["Phone"]<br />
+                        Email: @cus.EmailKH<br />
+                        Địa chỉ: @cus.DiaChiKH<br />
+                        Ghi chú: @db.HoaDons.Find(Session["MHD"]).GhiChu
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <a class="btn btn-success" href="@Url.Action("Index", "Home")" style="background-color:#379683;border:none"> Tiếp tục mua hàng </a>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Sản phẩm
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Hình ảnh</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int i = 0;
+                            decimal tong = 0;
+                        }
+                        @foreach (var item in db.ChiTietHDs.SqlQuery("Select * from ChiTietHD Where MaHD='" + Session["MHD"] + "'"))
+                        {
+                            i++;
+                            <tr>
+                                <td>@i</td>
+                                <td><img src="@item.SanPham.HinhAnh" width="50" height="50"></td>
+                                <td>@item.SanPham.TenSP</td>
+                                <td>@item.SoLuong</td>
+                                <td>@item.TongCong.ToString("#,##0") VNĐ</td>
+                            </tr>
+                            tong += (item.TongCong);
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Tổng tiền:</td>
+                            <td>@tong.ToString("#,##0") VNĐ</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

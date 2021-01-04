@@ -1,0 +1,115 @@
+﻿@model PagedList.IPagedList<WEB.Areas.Shopper.Models.SanPham>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Sản phẩm";
+    Layout = "~/Areas/Shopper/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    WEB.Repository.ProductDAO proDAO = new WEB.Repository.ProductDAO();
+    WEB.Areas.Shopper.Models.UserContext db = new WEB.Areas.Shopper.Models.UserContext();
+}
+<!--content-->
+<div class="content-top ">
+    <div class="container " style="text-align:center">
+        <div class="spec ">
+            <h3>@ViewBag.DanhMuc</h3>
+
+        </div>
+
+        <div class="tab-head ">
+            <div class=" tab-content tab-content-t ">
+                <div class="tab-pane active text-style" id="tab1">
+                    <div class=" con-w3l">
+                        @foreach (var item in Model)
+                        {
+                            decimal newPrice = (item.Gia) - (((item.Gia) * item.Discount) / 100);
+                            <div class="col-md-3 m-wthree" style="margin-bottom:30px;">
+                                <div class="col-m" style="border: none;">
+                                    <a href="@Url.Action("ChiTietSanPham", "SanPham", new { id=item.MaSP })" class="offer-img">
+                                        <img src="@item.HinhAnh" style="width:230px;height:230px" alt="@item.HinhAnh">
+                                        @if ((item.Gia) > newPrice)
+                                        {
+                                            <div class="offer"><p><span>Giảm @item.Discount %</span></p></div>
+                                        }
+                                        else
+                                        {
+
+                                        }
+                                    </a>
+                                    <div class="mid-1">
+                                        <div class="women">
+                                            @if (item.TenSP.Length > 20)
+                                            {
+                                                <h6><a href="@Url.Action("ChiTietSanPham", "SanPham", new { id=item.MaSP })" data-toggle="tooltip" title="@item.TenSP">@item.TenSP.Substring(0, 19) . . .</a></h6>
+                                            }
+                                            else
+                                            {
+                                                <h6><a href="@Url.Action("ChiTietSanPham", "SanPham", new { id=item.MaSP })">@item.TenSP</a></h6>
+                                            }
+                                        </div>
+                                        <div class="mid-2">
+
+                                            @if ((item.Gia) > newPrice)
+                                            {
+                                                <p style="margin-left:10px"><label>@proDAO.formatNumber(item.Gia) VNĐ</label><em class="item_price" style="color:red">@proDAO.formatNumber(newPrice) VNĐ</em></p>
+                                            }
+                                            else
+                                            {
+                                                <p style="margin-left: 70px;color:red">@proDAO.formatNumber(item.Gia) VNĐ</p>
+                                            }
+                                            <div class="clearfix"></div>
+
+                                            <div>
+                                                <a href="@Url.Action("SanPhamTheoThuongHieu", "SanPham", new { id = item.MaThuongHieu, page = 1 })"><img src="@item.ThuongHieu.Photo" width="20" height="20" /> @item.ThuongHieu.TenTH</a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="add">
+                                            <a class="btn btn-success" href="@Url.Action("ThemVaoGio", "GioHang", new { SanPhamID = item.MaSP })" style="background-color:#379683;border:none"> <span class="glyphicon glyphicon-shopping-cart"></span>  Thêm vào giỏ </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        @Html.PagedListPager(Model, page => Url.Action("SanPhamTheoDanhMuc", "SanPham", new { page }))
+    </div>
+</div>
+<style>
+    .col-m {
+        position: relative;
+        background-color: #fff;
+        border-radius: 5px;
+        -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+        .col-m::after {
+            content: "";
+            border-radius: 5px;
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .col-m:hover::after {
+            opacity: 0.7;
+        }
+</style>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+

@@ -1,0 +1,227 @@
+﻿@model WEB.Areas.Shopper.Models.SanPham
+@{
+    ViewBag.Title = "Chi tiết";
+    Layout = "~/Areas/Shopper/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    WEB.Repository.ProductDAO proDAO = new WEB.Repository.ProductDAO();
+    WEB.Areas.Shopper.Models.UserContext db = new WEB.Areas.Shopper.Models.UserContext();
+    WEB.Areas.Shopper.UserDB uDB = new WEB.Areas.Shopper.UserDB();
+}
+<div class="single" style="text-align:center">
+    <div class="container left">
+        <div class="single-top">
+            <div class="col-md-5 single-top">
+                <div class="single-w3agile" style="border: 1px solid #eeeeee ;">
+                    <div id="picture-frame">
+                        <img src="@Model.HinhAnh" data-src="@Model.HinhAnh" alt="" class="img-responsive" />
+                    </div>
+                    <script src="~/Areas/Shopper/Content/js/jquery.zoomtoo.js"></script>
+                    <script>
+                        $(function () {
+                            $("#picture-frame").zoomToo({
+                                magnify: 1.1
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+        @{
+            decimal newPrice = (Model.Gia) - (((Model.Gia) * Model.Discount) / 100);
+        }
+        <div class="col-md-7 single-top-left" style="text-align:left">
+            <div class="single-right">
+                <h3>@Model.TenSP</h3>
+                <div class="pr-single">
+
+                    @if ((Model.Gia) > newPrice)
+                    {
+                        <p class="reduced " style="font-size:24px;"><del>@proDAO.formatNumber(Model.Gia) VNĐ</del>@proDAO.formatNumber(newPrice) VNĐ</p>
+                    }
+                    else
+                    {
+                        <p class="reduced " style="font-size:24px;">@proDAO.formatNumber(Model.Gia) VNĐ</p>
+                    }
+                </div>
+
+                <div>Mô tả: <div style="margin-left:70px;margin-top:-20px">@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.ThongSoKyTHuat))</div> </div>
+                <hr style="border:1px solid #eeeeee" />
+                <ul class="social-top">
+                    <li><a href="http://facebook.com/tung.tim.96" target="_blank" class="icon facebook"><i class="fa fa-facebook" aria-hidden="true"></i><span></span></a></li>
+                </ul>
+                <div class="add add-3">
+                    <a class="btn btn-success" href="@Url.Action("ThemVaoGio", "GioHang", new { SanPhamID = Model.MaSP })" style="background-color:#379683;border:none"> <span class="glyphicon glyphicon-shopping-cart"></span>  Thêm vào giỏ </a>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+        <!--TIêu đề-->
+        <div class="spec " style="margin-top:30px;">
+            <h3><a href="@Url.Action("SanPhamTheoThuongHieu", "SanPham", new { id= Model.MaThuongHieu, page=1 })" style="text-decoration:none;">Đồng hồ cùng hãng @Model.ThuongHieu.TenTH</a></h3>
+
+        </div>
+        <!--Sản phẩm-->
+        <div class="tab-head ">
+            <div class=" tab-content tab-content-t ">
+                <div class="tab-pane active text-style" id="tab1">
+                    <div class=" con-w3l">
+                        @{int qtt = 0;}
+                        @foreach (var item in uDB.LaySanPhamTheoThuongHieuOrderNgayThemView(Model.MaThuongHieu))
+                        {
+                            qtt++;
+                            if (qtt > 4)
+                            {
+                                break;
+                            }
+                            decimal newPrice1 = (item.Gia) - (((item.Gia) * item.Discount) / 100);
+                            <div class="col-md-3 m-wthree" style="margin-bottom:30px;">
+                                <div class="col-m" style="border: none;">
+                                    <a href="@Url.Action("ChiTietSanPham", "SanPham", new { id=item.MaSP })" class="offer-img">
+                                        <img src="@item.HinhAnh" style="width:230px;height:230px" alt="@item.HinhAnh">
+                                        @if ((item.Gia) > newPrice1)
+                                        {
+                                            <div class="offer"><p><span>Giảm @item.Discount %</span></p></div>
+                                        }
+                                        else
+                                        {
+
+                                        }
+                                    </a>
+                                    <div class="mid-1">
+                                        <div class="women">
+                                            @if (item.TenSP.Length > 20)
+                                            {
+                                                <h6><a href="@Url.Action("ChiTietSanPham", "SanPham", new { id=item.MaSP })" data-toggle="tooltip" title="@item.TenSP">@item.TenSP.Substring(0, 19) . . .</a></h6>
+                                            }
+                                            else
+                                            {
+                                                <h6><a href="@Url.Action("ChiTietSanPham", "SanPham", new { id=item.MaSP })">@item.TenSP</a></h6>
+                                            }
+                                        </div>
+                                        <div class="mid-2">
+
+                                            @if ((item.Gia) > newPrice)
+                                            {
+                                                <p style="margin-left:10px"><label>@proDAO.formatNumber(item.Gia) VNĐ</label><em class="item_price" style="color:red">@proDAO.formatNumber(newPrice) VNĐ</em></p>
+                                            }
+                                            else
+                                            {
+                                                <p style="margin-left: 70px;color:red">@proDAO.formatNumber(item.Gia) VNĐ</p>
+                                            }
+
+                                            <div class="clearfix"></div>
+
+                                            <div>
+                                                <a href="@Url.Action("SanPhamTheoThuongHieu", "SanPham", new { id = item.MaThuongHieu, page = 1 })"><img src="@item.ThuongHieu.Photo" width="20" height="20" /> @item.ThuongHieu.TenTH</a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="add">
+                                            <a class="btn btn-success" href="@Url.Action("ThemVaoGio", "GioHang", new { SanPhamID = item.MaSP })" style="background-color:#379683;border:none"> <span class="glyphicon glyphicon-shopping-cart"></span>  Thêm vào giỏ </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+        <!--Giới thiệu-->
+
+    </div>
+</div>
+
+<style>
+    .toasang {
+        margin: 20px;
+        position: relative;
+        display: block;
+        width: 80px;
+        height: 80px;
+        text-align: center;
+        border-radius: 100%;
+        font: 700 30px/80px 'arial';
+        text-decoration: none;
+        color: #313131;
+        z-index: 1;
+        -webkit-transition: all .3s ease;
+        -moz-transition: all .3s ease;
+        -ms-transition: all .3s ease;
+        -o-transition: all .3s ease;
+        transition: all .3s ease;
+    }
+
+        .toasang:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            border-radius: 100%;
+            background: #dfdfdf;
+            z-index: -1;
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -ms-transition: all .3s ease;
+            -o-transition: all .3s ease;
+            transition: all .3s ease;
+        }
+
+        .toasang:hover {
+            color: #fff;
+            background: #399;
+        }
+
+            .toasang:hover:after {
+                background: transparent;
+                -webkit-transform: scale(1.6);
+                -moz-transform: scale(1.6);
+                -ms-transform: scale(1.6);
+                -o-transform: scale(1.6);
+                transform: scale(1.6);
+            }
+
+    .col-m {
+        position: relative;
+        background-color: #fff;
+        border-radius: 5px;
+        -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+        .col-m::after {
+            content: "";
+            border-radius: 5px;
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .col-m:hover::after {
+            opacity: 0.7;
+        }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+

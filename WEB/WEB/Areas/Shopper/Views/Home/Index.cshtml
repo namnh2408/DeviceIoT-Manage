@@ -1,0 +1,251 @@
+﻿
+@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Areas/Shopper/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    WEB.Repository.ProductDAO proDAO = new WEB.Repository.ProductDAO();
+    WEB.Areas.Shopper.Models.UserContext db = new WEB.Areas.Shopper.Models.UserContext();
+    WEB.Areas.Shopper.UserDB uDB = new WEB.Areas.Shopper.UserDB();
+}
+<div>
+    <div style="box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);">
+        <h1><a href="@Url.Action("SanPhamTheoThuongHieu", "SanPham", new {  page = 1, id=9 })"><img src="~/Images/BANNER/banner_0527.jpg" width="100%" /></a></h1>
+    </div>
+    <div>
+        <div>
+            <div class="search-form" style="position:relative;top:30px;left:425px; width:20%;">
+                @using (Ajax.BeginForm("SanPhamTheoTenSP", "SanPham", new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "Get" }))
+                {
+                    <input type="text" style="height:35px;background-color:#379683;border-radius:4px" placeholder="Tìm kiếm..." name="name">
+                    <button type="submit" class="btn btn-default" style="margin-bottom:3px"><i class=" fa fa-search"></i></button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-top">
+    <div class="container" style="text-align:center">
+        <div class="spec">
+            <h3><a href="@Url.Action("SanPhamMoiNhat", "SanPham", new { title="Đồng hồ mới nhất", page=1 })" style="text-decoration:none;">Đồng hồ mới nhất</a></h3>
+        </div>
+        <div class="tab-head">
+            <div class=" tab-content tab-content-t ">
+                <div class="tab-pane active text-style" id="tab1">
+                    <div class=" con-w3l">
+                        @{int qtt = 0;}
+                        @foreach (var item in uDB.LaySanPhamMoiNhat())
+                        {
+                            qtt++;
+                            if (qtt > 4)
+                            {
+                                break;
+                            }
+                            decimal newPrice = (item.Gia - ((item.Gia * item.Discount) / 100));
+                            <div class="col-md-3 m-wthree" style="margin-bottom:30px;">
+                                <div class="col-m" style="border: none">
+                                    <a href="@Url.Action("ChiTietSanPham", "SanPham", new { id=item.MaSP })" class="offer-img">
+                                        <img src="@item.HinhAnh" style="width:230px;height:230px" alt="@item.HinhAnh">
+                                        @if (item.Gia > newPrice)
+                                        {
+                                            <div class="offer"><p><span>Giảm @item.Discount %</span></p></div>
+                                        }
+                                        else
+                                        {
+
+                                        }
+                                    </a>
+                                    <div class="mid-1">
+                                        <div class="women">
+                                            @if (item.TenSP.Length > 20)
+                                            {
+                                                <h6><a href="@Url.Action("ChiTietSanPham", "SanPham", new { id=item.MaSP })" data-toggle="tooltip" title="@item.TenSP">@item.TenSP.Substring(0, 19) . . .</a></h6>
+                                            }
+                                            else
+                                            {
+                                                <h6><a href="@Url.Action("ChiTietSanPham", "SanPham", new { id=item.MaSP })">@item.TenSP</a></h6>
+                                            }
+                                        </div>
+                                        <div class="mid-2">
+
+                                            @if ((item.Gia) > newPrice)
+                                            {
+                                                <p><label>@proDAO.formatNumber(item.Gia) VNĐ</label><em class="item_price" style="color:red">@proDAO.formatNumber(newPrice) VNĐ</em></p>
+                                            }
+                                            else
+                                            {
+                                                <p style="margin-left: 70px;color:red">@proDAO.formatNumber(item.Gia) VNĐ</p>
+                                            }
+
+                                            <div class="clearfix"></div>
+                                            <div>
+                                                <a href="@Url.Action("SanPhamTheoThuongHieu", "SanPham", new { id = item.MaThuongHieu, page = 1 })"><img src="@item.ThuongHieu.Photo" width="20" height="20" /> @item.ThuongHieu.TenTH</a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="add">
+                                            <a class="btn btn-success" href="@Url.Action("ThemVaoGio", "GioHang", new { SanPhamID = item.MaSP})" style="background-color:#379683;border:none"> <span class="glyphicon glyphicon-shopping-cart"></span>  Thêm vào giỏ </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a href="@Url.Action("SanPhamTheoThuongHieu", "SanPham", new {  page=1, id=4 })"> <img src="~/Images/BANNER/banner_0526.png" style="width:100%" class="center-block" /></a>
+        </div>
+
+        <div class="spec" style="margin-top:20px;">
+            <h3><a href="@Url.Action("SanPhamGiamGiaCaoNhat", "SanPham", new { title="Đồng hồ giảm giá cao nhất", page=1 })" style="text-decoration:none;">Đồng hồ giảm giá cao nhất</a></h3>
+        </div>
+        <div class="tab-head ">
+            <div class=" tab-content tab-content-t ">
+                <div class="tab-pane active text-style" id="tab1">
+                    <div class=" con-w3l">
+                        @{int qtt1 = 0;}
+                        @foreach (var item in uDB.LaySanPhamGiamGiaCaoNhatView())
+                        {
+                            qtt1++;
+                            if (qtt1 > 4)
+                            {
+                                break;
+                            }
+                            decimal newPrice = item.Gia - ((item.Gia * item.Discount) / 100);
+                            <div class="col-md-3 m-wthree" style="margin-bottom:30px;">
+                                <div class="col-m" style="border: none">
+                                    <a href="@Url.Action("ChiTietSanPham", "SanPham", new { id=item.MaSP })" class="offer-img">
+                                        <img src="@item.HinhAnh" style="width:230px;height:230px" alt="@item.HinhAnh">
+                                        @if ((item.Gia) > newPrice)
+                                        {
+                                            <div class="offer"><p><span>Giảm @item.Discount %</span></p></div>
+                                        }
+                                        else
+                                        {
+
+                                        }
+                                    </a>
+                                    <div class="mid-1">
+                                        <div class="women">
+                                            @if (item.TenSP.Length > 20)
+                                            {
+                                                <h6><a href="@Url.Action("ProductDetail", "Products", new { id=item.MaSP })" data-toggle="tooltip" title="@item.TenSP">@item.TenSP.Substring(0, 19) . . .</a></h6>
+                                            }
+                                            else
+                                            {
+                                                <h6><a href="@Url.Action("ProductDetail", "Products", new { id=item.MaSP })">@item.TenSP</a></h6>
+                                            }
+                                        </div>
+                                        <div class="mid-2">
+                                            @if ((item.Gia) > newPrice)
+                                            {
+                                                <p style="margin-left:10px"><label>@proDAO.formatNumber(item.Gia) VNĐ</label><em class="item_price" style="color:red;">@proDAO.formatNumber(newPrice) VNĐ</em></p>
+                                            }
+                                            else
+                                            {
+                                                <p>@proDAO.formatNumber(item.Gia) VNĐ</p>
+                                            }
+
+                                            <div class="clearfix"></div>
+
+                                            <div>
+                                                <a href="@Url.Action("SanPhamTheoThuongHieu", "SanPham", new { id = item.MaThuongHieu, page = 1 })"><img src="@item.ThuongHieu.Photo" width="20" height="20" /> @item.ThuongHieu.TenTH</a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="add">
+                                            <a class="btn btn-success" href="@Url.Action("ThemVaoGio", "GioHang", new { SanPhamID = item.MaSP })" style="background-color:#379683;border:none"> <span class="glyphicon glyphicon-shopping-cart"></span> Thêm vào giỏ </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ul style="list-style-type:none;display:flex;">
+        <li style="float:left;">
+            <a href="@Url.Action("SanPhamTheoDanhMuc", "SanPham", new { id=1, page=1 })" class="hoverSlideHome" title="">
+                <img src="~/Images/BANNER/block_home_category1.jpg" title="" alt="" width="930" />
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("SanPhamTheoDanhMuc", "SanPham", new { id=2, page=1 })" class="hoverSlideHome" title="">
+                <img src="~/Images/BANNER/block_home_category2.jpg" title="" alt="" width="930" />
+            </a>
+        </li>
+    </ul>
+    <div style="margin-top:5px;margin-bottom:5px">
+        <a href="@Url.Action("SanPhamTheoDanhMuc", "SanPham", new { id=3, page=1 })" class="hoverSlideHome" title="">
+            <img src="~/Images/BANNER/photo_2019-11-05_23-37-59.jpg" class="item-img " title="" alt="" width="99%">
+        </a>
+    </div>
+
+
+</div>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+<style>
+    .hoverSlideHome img {
+        -webkit-transition-duration: 0.5s; /*Webkit: Animation duration*/
+        -moz-transition-duration: 0.5s; /*Mozilla duration version*/
+        -o-transition-duration: 0.5s; /*Opera duration version*/
+        opacity: 1; /*initial opacity of images*/
+        margin: 0 10px 5px 0; /*margin between images*/
+    }
+
+        .hoverSlideHome img:hover {
+            -webkit-transform: scale(0.98); /*Webkit: Scale up image to 1.2x original size*/
+            -moz-transform: scale(0.98); /*Mozilla scale version*/
+            -o-transform: scale(0.98); /*Opera scale version*/
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); /*CSS3 shadow: 30px blurred shadow all around image*/
+            -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); /*Safari shadow version*/
+            -moz-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); /*Mozilla shadow version*/
+            opacity: 1;
+        }
+
+
+    .col-m {
+        position: relative;
+        background-color: #fff;
+        border-radius: 5px;
+        -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+        .col-m::after {
+            content: "";
+            border-radius: 5px;
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .col-m:hover::after {
+            opacity: 0.7;
+        }
+
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+</style>
+

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<WEB.Areas.Administrator.Models.HoaDon>
+
+@{
+    ViewBag.Title = "Index3";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Hóa Đơn Đang Giao</h2>
+<div class="text-warning">
+    @ViewBag.CateError
+</div>
+<hr />
+<div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a class="btn btn-primary btn-default" href="@Url.Action("Index", "HoaDon")" role="button" style="background-color:none">Hóa đơn chưa xác nhận</a>
+            <a class="btn btn-primary btn-default" href="@Url.Action("Index2", "HoaDon")" role="button" style="background-color:none">Hóa đơn đã xác nhận</a>
+            <a class="btn btn-primary btn-default" href="@Url.Action("Index3", "HoaDon")" role="button" style="background-color:forestgreen">Hóa đơn đang giao</a>
+            <a class="btn btn-primary btn-default" href="@Url.Action("Index4", "HoaDon")" role="button" style="background-color:none">Hóa đơn đã hoàn tất</a>
+            <div class="form-group input-group navbar-right">
+                @using (Ajax.BeginForm("Index3", "HoaDon", new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "Get" }))
+                {
+                    <input type="text" name="name" class="form-control" placeholder="Nhập dd/mm/yyyy" style="width:300px" />
+                    <button class="btn btn-success" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                }
+            </div>
+            <a href="@Url.Action("Index3", "HoaDon")"><i class="fa fa-refresh"> </i> Làm mới</a>
+        </div>
+        <div class="panel-body" style="width:100%;height:500px;overflow:auto;">
+            <div class="table-responsive table-bordered">
+                <table class="table">
+                    <thead>
+                        <tr style="background-color:#eeeeee">
+                            <th>#</th>
+                            <th>Tên KH</th>
+                            <th>Điện Thoại</th>
+                            <th>Ngày giao</th>
+                            <th>Tình trạng</th>
+                            <th>Xác nhận</th>
+                            <th>Hoàn tất</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.MaHD)</td>
+                                <td>@Html.DisplayFor(modelItem => item.KhachHang.HoTenKH)</td>
+                                <td>@Html.DisplayFor(modelItem => item.KhachHang.DienThoai)</td>
+                                <td>@Html.DisplayFor(modelItem => item.NgayGiao)</td>
+                                <td style="color:orangered">Đang giao...</td>
+                                <td style="color:forestgreen">@Html.DisplayFor(modelItem => item.XacNhan)</td>
+                                <td style="color:orangered">@Html.DisplayFor(modelItem => item.HoanTat)</td>
+                                <td>
+                                    <a href="@Url.Action("HoanTat", "HoaDon", new { id = item.MaHD })"><i class="fa fa-check-circle"> </i> Hoàn Tất</a> |
+                                    <a href="@Url.Action("Details", "HoaDon", new { id = item.MaHD })" target="_blank"><i class="fa fa-print" style="font-size:25px"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.table-responsive -->
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+</div>
+

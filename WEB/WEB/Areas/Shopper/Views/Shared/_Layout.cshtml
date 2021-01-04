@@ -1,0 +1,229 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Areas/Shopper/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="~/Areas/Shopper/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="~/Areas/Shopper/Content/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="~/Areas/Shopper/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Areas/Shopper/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Areas/Shopper/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script type="application/x-javascript">
+         addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+        function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <link href="~/Areas/Shopper/Content/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <!-- Custom Theme files -->
+    <link href="~/Areas/Shopper/Content/css/style.css" rel='stylesheet' type='text/css' />
+    <!-- js -->
+    <script src="~/Areas/Shopper/Content/js/jquery-1.11.1.min.js"></script>
+    <!-- //js -->
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="~/Areas/Shopper/Content/js/move-top.js"></script>
+    <script type="text/javascript" src="~/Areas/Shopper/Content/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
+    <link href="~/Areas/Shopper/Content/css/font-awesome.css" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
+    <!--- start-rate---->
+    <script src="~/Areas/Shopper/Content/js/jstarbox.js"></script>
+    <link rel="stylesheet" href="~/Areas/Shopper/Content/css/jstarbox.css" type="text/css" media="screen" charset="utf-8" />
+    <!---//End-rate---->
+    <style>
+        .cool-link {
+            display: inline-block;
+            color: #000;
+            text-decoration: none;
+        }
+
+            .cool-link::after {
+                content: '';
+                display: block;
+                width: 0;
+                height: 2px;
+                background: #000;
+                transition: width .3s;
+            }
+
+            .cool-link:hover::after {
+                width: 100%;
+                /*transition: width .3s;*/
+            }
+    </style>
+</head>
+<body id="style-6">
+    <div class="header">
+        <div class="container">
+            <h1 class="logo">
+                <span><a href="@Url.Action("Index", "Home")" style="text-decoration:none;">Watch Shop</a></span>
+            </h1>
+            <div class="header-ri">
+                <ul class="social-top">
+                    <li><a href="#" target="_blank" class="icon facebook"><i class="fa fa-facebook" aria-hidden="true"></i><span></span></a></li>
+                    <li><a href="#" class="icon pinterest"><i class="fa fa-youtube-play" aria-hidden="true"></i><span></span></a></li>
+                </ul>
+            </div>
+            <div class="nav-top">
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header nav_2">
+                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                        <ul class="nav navbar-nav" style="margin-left:280px;">
+                            <li><a href="@Url.Action("Index", "Home")" class="cool-link"><span style="color: black">Trang chủ</span></a></li>
+                            @{
+                                WEB.Areas.Shopper.Models.UserContext db = new WEB.Areas.Shopper.Models.UserContext();
+                                foreach (var itemCate in db.DanhMucs)
+                                {
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle cool-link" data-toggle="dropdown"><span style="color: black">@itemCate.TenDanhMuc<b></b></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li class="col-sm-12">
+                                                <ul class="multi-column-dropdown">
+                                                    @foreach (var itemPt in db.LoaiSPs.Where(c => c.MaDanhMuc == itemCate.MaDanhMuc))
+                                                    {
+                                                        <li><a href="@Url.Action("SanPhamTheoLoai", "SanPham", new { id = itemPt.MaLoaiSP, page = 1 })"><i aria-hidden="true"></i>@itemPt.TenLoaiSP</a></li>
+                                                    }
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                }
+                            }
+                            <li class="dropdown ">
+                                <a href="#" class="dropdown-toggle cool-link" data-toggle="dropdown"><span style="color: black">Thương hiệu<b></b></span></a>
+                                <ul class="dropdown-menu" style="margin-left:77px">
+                                    <li class="col-sm-12">
+                                        <ul class="multi-column-dropdown">
+                                            @foreach (var itemPdc in db.ThuongHieux)
+                                            {
+                                                <li><a href="@Url.Action("SanPhamTheoThuongHieu", "SanPham", new { id = itemPdc.MaThuongHieu, page = 1 })"><img src="@itemPdc.Photo" width="20" height="20" /> @itemPdc.TenTH</a></li>
+                                            }
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </nav>
+                <div class="cart">
+                    @{
+                        List<WEB.Areas.Shopper.Models.CartItem> gio = Session["giohang"] as List<WEB.Areas.Shopper.Models.CartItem>;
+                        if (gio == null || gio.Count == 0)
+                        {
+                            <a href="@Url.Action("Index","GioHang")"><span class="fa fa-shopping-cart my-cart-icon" style="color:#379683;"><span class="badge badge-notify my-cart-badge">0</span></span></a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Index","GioHang")"><span class="fa fa-shopping-cart my-cart-icon" style="color:#379683;"><span class="badge badge-notify my-cart-badge">@gio.Count</span></span></a>
+                        }
+                    }
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    @RenderBody()
+
+
+    <div class="footer" style="background-color:#133337">
+        <div class="container">
+            <div class="col-md-3 footer-grid">
+                <h3>Giới thiệu</h3>
+                <p>
+                    Cửa hàng đồng hồ.
+                </p>
+            </div>
+            <div class="col-md-3 footer-grid ">
+                <h3>Menu</h3>
+                <ul>
+                    <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                    @foreach (var itemCate in db.DanhMucs)
+                    {
+                        <li><a href="#">@itemCate.TenDanhMuc</a></li>
+                    }
+                </ul>
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="footer-bottom">
+                <h1 class="logo" style="margin-bottom:10px">
+                    <span><a href="@Url.Action("Index", "Home")" style="text-decoration:none;color:white">Watch Shop</a></span>
+                </h1>
+                <ul class="social-fo">
+                    <li><a href="#" target="_blank" class=" face"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#" class=" twi"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#" class=" pin"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                    <li><a href="#" class=" dri"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                </ul>
+                <div class=" address">
+                    <div class="col-md-4 fo-grid1">
+                        <p><i class="fa fa-home" aria-hidden="true"></i>1 Võ Văn Ngân, Linh Chiểu, Thủ Đức</p>
+                    </div>
+                    <div class="col-md-4 fo-grid1">
+                        <p><i class="fa fa-phone" aria-hidden="true"></i>0909090909</p>
+                    </div>
+                    <div class="col-md-4 fo-grid1">
+                        <p><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i>watchshop@gmail.com</a></p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="copy-right">
+                <p> &copy; 2019 WatchShop. All Rights Reserved | Design by  <a target="_blank" href="#">  UnKnown</a></p>
+            </div>
+        </div>
+    </div>
+    <!-- //footer-->
+    <!-- smooth scrolling -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+                var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+            };
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+        });
+    </script>
+    <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+    <!-- //smooth scrolling -->
+    <script src="~/Areas/Shopper/Content/js/bootstrap.js"></script>
+    <!-- for bootstrap working -->
+
+</body>
+</html>
