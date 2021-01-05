@@ -831,7 +831,7 @@ begin
 	end
 return @doanhthu
 end
-go
+GO
 ----------------------------------/// INSERT Dữ Liệu ///-----------------------------------
 -- Thêm dữ liệu bảng quản trị
 insert into QuanTri values('Admin','Z8iwc6Uz2M+EpI1l6kLxPQ==')
@@ -1088,3 +1088,4 @@ insert into ChiTietHD values('HD7',1001,N'Đồng hồ nam dây cao su Casio W-2
 insert into ChiTietHD values('HD7',1002,N'Đồng hồ nam dây cao su Casio W-W218H-1AVDF 44,4×43',1000000,1,1000000)
 insert into ChiTietHD values('HD7',1062,N'Đồng Hồ Nữ Dây Nhựa Casio BABY-G BA-110GA-1A1 46,3',1800000,1,1800000)
 
+SELECT * FROM dbo.HoaDon
