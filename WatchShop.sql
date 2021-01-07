@@ -33,29 +33,53 @@ MaSP int identity(1000,1) constraint PK_MaSP primary key not null,
 MaLoaiSP int constraint FK_MaLoaiSP foreign key references LoaiSP(MaLoaiSP) not null,
 MaThuongHieu int constraint FK_MaThuongHieu foreign key references ThuongHieu(MaThuongHieu) not null,
 TenSP nvarchar(500) not null,
-ThongSoKyTHuat nvarchar(max),
+HinhLon NVARCHAR(MAX),
+HinhNho NVARCHAR(MAX),
+MoTa NTEXT,
 Gia money not null,
 Discount int not null,
 SoLuongSP int constraint kiemtrasoluongsanpham check(SoLuongSP>=0),
-HinhAnh nvarchar(max),
 NgayThem datetime,
-TinhTrang bit
+TinhTrang BIT,
+DanhGia NTEXT
 )
 go
 
+--bảng loại tài khoản
+CREATE TABLE LoaiTK
+(
+	MaLoaiTK CHAR(7) NOT NULL PRIMARY KEY,
+	TenLoaiTK NVARCHAR(20)
+)
+
+--bảng tài khoản
+CREATE TABLE TaiKhoan
+(
+	MaTK INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	EmailDangNhap VARCHAR(20),
+	MatKhau VARCHAR(32),
+	NgayDangKi DATETIME,
+	TrangThai BIT,
+	MaLoaiTK CHAR(7) REFERENCES dbo.LoaiTK(MaLoaiTK)
+)
+
 -- Bảng Khách hàng
 create table KhachHang(
-DienThoai varchar(10) constraint PK_DienThoai primary key,
-HoTenKH nvarchar(200) not null,
-EmailKH nvarchar(200) unique not null,
-DiaChiKH nvarchar(500) not null
+MaKH INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+MaTK INT REFERENCES dbo.TaiKhoan(MaTK),
+DienThoai varchar(10),-- user đăng nhập sẽ lấy số điện thoại làm mật khẩu ==> DienThoai == Password
+HoTenKH nvarchar(200) ,
+EmailKH nvarchar(200) unique ,
+DiaChiKH nvarchar(500) ,
+GioiTinh NVARCHAR(3),
+--MatKhau NVARCHAR(100) NOT NULL
 )
 go
 
 -- Bảng Hóa đơn
 create table HoaDon(
 MaHD varchar(20) constraint PK_MaHD primary key not null,
-DienThoai varchar(10) constraint FK_DienThoai foreign key references KhachHang(DienThoai) not null,
+MaKH INT constraint FK_DienThoai foreign key references KhachHang(MaKH) not null,
 NgayTao datetime,
 NgayGiao datetime,
 XacNhan bit,
@@ -63,7 +87,8 @@ HoanTat bit,
 GhiChu nvarchar(500),
 Total money not null
 )
-go
+GO
+ALTER TABLE dbo.HoaDon ADD DienThoai NVARCHAR(20)
 -- Bảng Chi tiết hóa đơn
 create table ChiTietHD(
 MaHD varchar(20)  foreign key references HoaDon(MaHD) not null,
@@ -80,7 +105,25 @@ create table QuanTri(
 TaiKhoan nvarchar(100) primary key,
 MatKhau varchar(200),
 )
-go
+GO
+
+CREATE TABLE KhuyenMai
+(
+	MaKM CHAR(7) NOT NULL PRIMARY KEY,
+	TenKM NVARCHAR(50),
+	NgayBD DATETIME,
+	NgayKT DATETIME
+)
+GO
+
+CREATE TABLE ChiTietKhuyenMai
+(
+	MaKM CHAR(7) NOT NULL REFERENCES dbo.KhuyenMai(MaKM),
+	MaSP INT NOT NULL REFERENCES dbo.SanPham(MaSP),
+	PhamTramKM INT,
+	PRIMARY KEY (MaKM,MaSP)
+)
+GO 
 
 ----------------------------------/// THỦ TỤC ///-----------------------------------
 --------------- ===THAO TÁC QUẢN TRỊ====----------------
@@ -213,29 +256,33 @@ create proc ThemSanPham
 @MaLoaiSP int,
 @MaThuongHieu int,
 @TenSP nvarchar(500),
-@ThongSoKyTHuat nvarchar(max),
+@HinhLon NVARCHAR(MAX),
+@HinhNho NVARCHAR(MAX),
+@MoTa NTEXT,
 @Gia money,
 @Discount int,
-@SoLuongSP int,
-@HinhAnh nvarchar(max)
+@SoLuongSP INT,
+@DanhGia NTEXT
 as
 begin
 SET NOCOUNT ON;
 insert into SanPham
-values(@MaLoaiSP,@MaThuongHieu,@TenSP,@ThongSoKyTHuat,@Gia,@Discount,@SoLuongSP,@HinhAnh,getdate(),1)
+values(@MaLoaiSP,@MaThuongHieu,@TenSP,@HinhLon,@HinhNho,@MoTa,@Gia,@Discount,@SoLuongSP,getdate(),1,@DanhGia)
 end
 go
 -- Sửa sản phẩm
 create proc SuaSanPham
-@MaSP int,
+@MaSP INT,
 @MaLoaiSP int,
 @MaThuongHieu int,
-@TenSP nvarchar(200),
-@ThongSoKyThuat nvarchar(max),
+@TenSP nvarchar(500),
+@HinhLon NVARCHAR(MAX),
+@HinhNho NVARCHAR(MAX),
+@MoTa NTEXT,
 @Gia money,
 @Discount int,
-@SoLuongSP int,
-@HinhAnh nvarchar(max)
+@SoLuongSP INT,
+@DanhGia NTEXT
 as
 begin
 SET NOCOUNT ON;
@@ -243,11 +290,13 @@ update SanPham set
 MaLoaiSP=@MaLoaiSP,
 MaThuongHieu=@MaThuongHieu,
 TenSP=@TenSP,
-ThongSoKyTHuat=@ThongSoKyThuat,
+HinhLon=@HinhLon,
+HinhNho=@HinhNho,
+MoTa=@MoTa,
 Gia=@Gia,
 Discount=@Discount,
 SoLuongSP=@SoLuongSP,
-HinhAnh=@HinhAnh
+DanhGia=@DanhGia
 where
 MaSP=@MaSP
 end
@@ -363,33 +412,35 @@ end
 go
 -- Thêm khách hàng
 create proc ThemKhachHang
+@MaTK INT,
 @DienThoai varchar(10),
 @HoTenKH nvarchar(200),
 @EmailKH nvarchar(200),
-@DiaChiKH nvarchar(500)
+@DiaChiKH nvarchar(500),
+@GioiTinh NVARCHAR(3)
 as
 begin
 SET NOCOUNT ON;
-insert into KhachHang
-values(@DienThoai,@HoTenKH,@EmailKH,@DiaChiKH)
+insert into KhachHang(MaTK,DienThoai,HoTenKH,EmailKH,DiaChiKH,GioiTinh)
+values(@MaTK,@DienThoai,@HoTenKH,@EmailKH,@DiaChiKH,@GioiTinh)
 end
 go
 -- Update khách hàng nếu đã tồn tại numerPhone
-create proc UpdateKhachHang
-@DienThoai varchar(10),
-@HoTenKH nvarchar(200),
-@EmailKH nvarchar(200),
-@DiaChiKH nvarchar(500)
-as
-begin
-SET NOCOUNT ON;
-update KhachHang set
-HoTenKH=@HoTenKH,
-EmailKH=@EmailKH,
-DiaChiKH=@DiaChiKH
-where DienThoai=@DienThoai
-end
-go
+--create proc UpdateKhachHang
+--@DienThoai varchar(10),
+--@HoTenKH nvarchar(200),
+--@EmailKH nvarchar(200),
+--@DiaChiKH nvarchar(500)
+--as
+--begin
+--SET NOCOUNT ON;
+--update KhachHang set
+--HoTenKH=@HoTenKH,
+--EmailKH=@EmailKH,
+--DiaChiKH=@DiaChiKH
+--where DienThoai=@DienThoai
+--end
+--go
 -------------- [Bảng HoaDon] -------------
 
 -- Lấy hóa đơn chưa xác nhận
@@ -453,24 +504,24 @@ select * from HoaDon where HoanTat=1 and XacNhan=1 and MONTH(NgayTao)=@Thang and
 end
 go
 -- Thêm hóa đơn
-create proc ThemHoaDon
-@MaHD varchar(20),
-@DienThoai varchar(10),
-@GhiChu nvarchar(500)
-as
-begin
-SET NOCOUNT ON;
-begin tran
-	begin try
-		insert into HoaDon(MaHD,DienThoai,NgayTao,NgayGiao,XacNhan,HoanTat,GhiChu,Total)
-		values(@MaHD,@DienThoai,getdate(),null,0,0,@GhiChu,0)
-		commit tran
-	end try
-begin catch
-	rollback tran
-end catch
-end
-go
+--create proc ThemHoaDon
+--@MaHD varchar(20),
+--@MaKH varchar(10),
+--@GhiChu nvarchar(500)
+--as
+--begin
+--SET NOCOUNT ON;
+--begin tran
+--	begin try
+--		insert into HoaDon(MaHD,MaKH,NgayTao,NgayGiao,XacNhan,HoanTat,GhiChu,Total)
+--		values(@MaHD,@MaKH,getdate(),null,0,0,@GhiChu,0)
+--		commit tran
+--	end try
+--begin catch
+--	rollback tran
+--end catch
+--end
+--go
 -- Thêm hóa đơn được xác nhận
 create proc ThemHoaDonDaXacNhan
 @MaHD varchar(20)
@@ -841,12 +892,7 @@ VALUES  ( N'admin1', -- TaiKhoan - nvarchar(100)
           'admin123'  -- MatKhau - varchar(200)
           )
 -- Thêm dữ liệu bảng khách hàng
-insert into KhachHang values('0385369830',N'Nguyễn Văn Thắng',N'nvt@gmail.com',N'484 Lê Văn Việt')
-insert into KhachHang values('0388452147',N'Vũ Trung Kiên',N'Kien@gmail.com',N'Thủ Đức')
-insert into KhachHang values('0382013685',N'Trần Văn Hân Minh Đính',N'tvhmd@gmail.com',N'Thủ Đức')
-insert into KhachHang values('0123456111',N'Vương Thị Thu Trang',N'vttt@gmail.com',N'Quận 1')
-insert into KhachHang values('0123456789',N'Trần Thành Long',N'long@gmail.com',N'Biên Hòa Đồng Nai')
-insert into KhachHang values('0785359535',N'Vương Quốc Vinh',N'vinh@gmail.com',N'Biên Hòa')
+
 
 -- Thêm dữ liệu bảng danh mục
 insert into DanhMuc values(N'Đồng hồ nam',N'/Images/Đồng-Hồ-Nam-FNGEEN-DÂY-HỢP-KIM-5.jpg')--1
@@ -884,6 +930,7 @@ insert into ThuongHieu values(N'Fossil',N'/Images/thumb_31585_logo_retailer_1x-0
 insert into ThuongHieu values(N'Marc Jacobs',N'/Images/20161111104807_221_mj_logo_new-01-01.jpg',N'MarcJacob@gmail.com',N'Mỹ','0385639830')--7
 insert into ThuongHieu values(N'Micheal Kors',N'/Images/57ea67b554764-01.jpg',N'MichealKors@gmail.com',N'Mỹ','0385639830')--8
 insert into ThuongHieu values(N'Skagen',N'/Images/skagen-logo-01-01.jpg',N'Skagen@gmail.com',N'Mỹ','0385639830')--9
+
 -- Thêm dữ liệu bảng sản phẩm
 insert into SanPham values(1,4,N'Đồng hồ nam dây cao su Casio W-218H-2AVDF 44.4 mm x 43.2 mm - Đen Đỏ',N'+Thương hiệu: Casio; +Xuất xứ: Nhật Bản',1000000,5,999,N'/Images/Đồng hồ nam dây cao su Casio W-218H-2AVDF 44.4 mm x 43.2 mm - Đen Đỏ.jpg',getdate(),1)
 insert into SanPham values(1,4,N'Đồng hồ nam dây cao su Casio W-218H-2AVDF 44.4 mm x 43.2 mm - Xanh Đen',N'+Thương hiệu: Casio; +Xuất xứ: Nhật Bản',1200000,0,999,N'/Images/Đồng hồ nam dây cao su Casio W-218H-2AVDF 44.4 mm x 43.2 mm - Xanh Đen.jpg',getdate(),1)
